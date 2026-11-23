@@ -1,0 +1,19 @@
+\begin{table}[t]
+  \centering
+  \small
+  \caption{Empirical benchmark results: mean $\pm$ SD over $N=20$ seeds (100--119). The five primary physical metrics drive cross-policy ranking; $\mathcal{J}$ is a within-tier diagnostic only.}
+  \label{tab:results}
+  \resizebox{\linewidth}{!}{%
+  \begin{tabular}{@{}lcccc@{}}
+    \toprule
+    Metric & Conventional & AI\text{-}Low & AI\text{-}Med & AI\text{-}Strict \\
+    \midrule
+    Yield (t/ha) & $5.76 \pm 0.07$ & $6.41 \pm 0.04$ & $5.81 \pm 0.03$ & $5.49 \pm 0.03$ \\
+    Irrigation (m$^3$/ha) & $8580.0 \pm 0.0$ & $5383.5 \pm 381.3$ & $5383.5 \pm 381.3$ & $5437.5 \pm 387.9$ \\
+    IoT energy (kWh/ha) & $131.0 \pm 0.0$ & $32.3 \pm 0.9$ & $32.3 \pm 0.9$ & $29.5 \pm 0.7$ \\
+    $\Delta$SOC (g/kg) & $-0.18 \pm 0.49$ & $-0.18 \pm 0.49$ & $0.99 \pm 0.49$ & $1.69 \pm 0.49$ \\
+    Crop-loss crop-weeks & $8.90 \pm 2.51$ & $4.90 \pm 0.31$ & $4.90 \pm 0.31$ & $4.40 \pm 0.50$ \\
+    $J$ (diagnostic) & $0.57 \pm 0.02$ & $0.63 \pm 0.02$ & $0.64 \pm 0.02$ & $0.12 \pm 0.02$ \\
+    \bottomrule
+  \end{tabular}}
+\end{table}

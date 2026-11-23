@@ -9,7 +9,7 @@ Run:
     python generate_figures.py
     python generate_figures.py --verify-labels   # print the label -> manuscript mapping
 
-Every label below is taken verbatim from paper_revised_2.tex. See LABEL_SOURCES.
+Every label below is taken verbatim from multi_tier_agri_ecological_optimization_framework.tex. See LABEL_SOURCES.
 The figure content is computed from Eq. (1) as currently written (L140-L145):
 the additive core is [S_net]_+ + [C_net]_+ and the strict core is [S_net]_+[C_net]_+.
 
@@ -156,15 +156,15 @@ def figure1(path: Path) -> None:
     _box(ax, 32, 76, 24, 6.6, r"Normalize each sub-index to $[0,1]$",
          fc="#EAF6F0", ec=MID, fs=8.4)
     _box(ax, 32, 64, 24, 9.5,
-         r"Orchestration policy" "\n" r"$\mathcal{J}_{\tau}$  (Eq. 1)",
+         r"Orchestration policy" "\n" r"$\mathcal{J}_{\tau}$  (Eq. 10)",
          fc=MID, ec=DARK, fs=10.4, weight="bold")
     # white text on dark box
     ax.texts[-1].set_color("white")
     mult = [
-        r"$\alpha_{\rm AAI},\mu_{\rm AAI}$  soil / crop weights",
+        r"$w_S(\tau),w_C(\tau)$  soil / crop weights",
         r"$\beta_{\rm AAI}\in[1,5]$  event-driven duty",
-        r"$\phi_{\rm AAI}\in[1,5]$  ET-coupled water",
-        r"$m_{\rm mult}(\tau),\ p(\tau),\ c_M(\tau),\ c_W(\tau)$",
+        r"$\phi_{\rm AAI}\in[1,5]$  distribution-coupled water",
+        r"$m_{\rm mult}(\tau),\ \psi_\tau,\ c_M(\tau),\ c_W(\tau)$",
     ]
     for i, text in enumerate(mult):
         _box(ax, 32, 59 - i * 7.2, 24, 6.0, text, fc="white", ec=LIGHT, fs=7.8)
@@ -175,7 +175,7 @@ def figure1(path: Path) -> None:
     constraints = [
         r"$C_{\rm chem}=0$ for $\tau=2$",
         r"$M_{\rm duty}\geq M_{\min}=0.05$",
-        r"$W_{\rm net}\geq W_{\rm crit,k}$",
+        r"$\theta_{{\rm root},k,t}\geq\theta_{{\rm crit},k}$",
         "Drought fallback (Weeks 24-29):\ndeficit-rationed triage",
     ]
     for i, text in enumerate(constraints):
@@ -233,23 +233,23 @@ def figure2(path: Path) -> None:
                  r"$\mathcal{J}_{\tau}$", fontsize=16, fontweight="bold",
                  color=DARK, y=0.965)
     fig.text(0.5, 0.915,
-             "Reward cores plotted exactly as defined in Eq. (1); penalties are not shown.",
+             "Reward cores plotted exactly as defined in Eq. (10); penalties are not shown.",
              ha="center", fontsize=9, color=GREY)
 
     cards = [
         (r"$\tau=0$  AI-Low",
          "Compensatory / transitional\n"
-         r"$m_{\rm mult}=0,\quad p=1$" "\n"
-         r"$w_S=\alpha_{\rm AAI},\ w_C=\mu_{\rm AAI}$" "\n"
+         r"$m_{\rm mult}=0,\quad \psi_0(x)=x$" "\n"
+         r"$w_S=w_C=1$" "\n"
          r"low $c_M(0),c_W(0)$;  $\mathbb{I}_{\rm nat}=1$", PALE, LIGHT),
         (r"$\tau=1$  AI-Med",
          "Balanced regenerative\n"
-         r"$m_{\rm mult}=0,\quad p=1$" "\n"
-         "balanced $w_S,w_C$\n"
-         r"moderate $c_M(1),c_W(1)$;  $\mathbb{I}_{\rm nat}=1$", "#EAF6F0", MID),
+         r"$m_{\rm mult}=0,\quad \psi_1(x)=x$" "\n"
+         r"$w_S=w_C=1$;  $\mathbb{I}_{\rm nat}=1$" "\n"
+         r"moderate $c_M(1),c_W(1)$", "#EAF6F0", MID),
         (r"$\tau=2$  AI-Strict",
          "Nature-locked / zero-compromise\n"
-         r"$m_{\rm mult}=\alpha_{\rm AAI}\mu_{\rm AAI},\quad p=2$" "\n"
+         r"$m_{\rm mult}=1.5,\quad \psi_2=2x-x^2$" "\n"
          r"core $[\mathrm{S}_{\rm net}]_+[\mathrm{C}_{\rm net}]_+$" "\n"
          r"$\mathbb{I}_{\rm nat}^{(2)}$ active;  $C_{\rm chem}=0$", "#E3F1EA", DARK),
     ]
@@ -294,38 +294,39 @@ def figure2(path: Path) -> None:
         cb = fig.colorbar(cf, ax=a, fraction=0.046, pad=0.03)
         cb.ax.tick_params(labelsize=7.5)
 
-    # cross-section: positive-part clipping
+    # cross-section: monotone strictness penalty
     a = fig.add_subplot(gs[1, 2])
-    x = np.linspace(-0.4, 1, 500)
-    pos = np.clip(x, 0, None)
-    a.axvspan(-0.4, 0, color="#FDEDEC", alpha=0.9, label="inactive region")
-    a.plot(x, pos, color=MID, lw=2.4, label=r"$[x]_+$  (clipped)")
-    a.plot(x, pos**2, color=WARM, lw=2.2, ls="--", label=r"$[x]_+^2$  ($p=2$)")
-    a.axvline(0, color=GREY, lw=1.0)
-    a.axhline(0, color=GREY, lw=1.0)
-    a.set_xlim(-0.4, 1)
-    a.set_ylim(-0.02, 1.05)
-    a.set_xlabel(r"$S_{\rm net}$ or $C_{\rm net}$", fontsize=10)
-    a.set_ylabel("clipped contribution", fontsize=10)
-    a.set_title("Positive-part clipping prevents false positives", fontsize=10.5,
-                color=DARK, pad=8)
-    a.legend(fontsize=8, loc="upper left", frameon=True)
+    x = np.linspace(0, 1, 500)
+    psi1 = x
+    psi2 = 1 - (1 - x) ** 2
+    a.fill_between(x, psi1, psi2, color="#E3F1EA", alpha=0.9,
+                   label=r"$\psi_2-\psi_1=x(1-x)\geq 0$")
+    a.plot(x, psi1, color=MID, lw=2.4, label=r"$\psi_0=\psi_1=x$  (AI-Low/Med)")
+    a.plot(x, psi2, color=WARM, lw=2.2, ls="--",
+           label=r"$\psi_2=1-(1-x)^2$  (AI-Strict)")
+    a.set_xlim(0, 1)
+    a.set_ylim(0, 1.05)
+    a.set_xlabel(r"normalized stress $x\in[0,1]$", fontsize=10)
+    a.set_ylabel("penalty", fontsize=10)
+    a.set_title("Monotone strictness penalty on [0,1]", fontsize=10.5,
+                 color=DARK, pad=8)
+    a.legend(fontsize=8, loc="lower right", frameon=True)
     a.grid(alpha=0.18)
-    a.text(-0.37, 0.92, r"$x<0\Rightarrow[x]_+=0$", fontsize=8.5, color="#C0392B")
-
+    a.text(0.06, 0.94, r"$\psi_2'(x)=2(1-x)\geq 0$", fontsize=8.5, color="#C0392B")
     fig.savefig(path, dpi=300, bbox_inches="tight", pad_inches=0.22)
     plt.close(fig)
 
 
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--outdir", type=Path, default=Path(__file__).resolve().parent)
+    p.add_argument("--outdir", type=Path, default=Path(__file__).resolve().parent.parent / "figures",
+                   help="figure directory (default: figures/ at the repository root)")
     p.add_argument("--verify-labels", action="store_true",
                    help="print every figure label and the manuscript line it comes from")
     args = p.parse_args()
 
     if args.verify_labels:
-        print("Label verification (source: paper_revised_2.tex)")
+        print("Label verification (source: multi_tier_agri_ecological_optimization_framework.tex)")
         print("-" * 62)
         for label, src in LABEL_SOURCES.items():
             print(f"{label:52s} -> {src}")
