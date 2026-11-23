@@ -44,8 +44,8 @@ Both generators are fully deterministic: seeds are 100–119 and every stochasti
 uses `numpy.random.default_rng(seed)`. Re-running them reproduces the committed results,
 tables and figures byte-for-byte.
 
-To build the PDF, use XeLaTeX or LuaLaTeX (`fontspec`, `bidi=basic` and Noto Sans are
-required; `pdflatex` will not work):
+To build the PDF, use XeLaTeX or LuaLaTeX (`fontspec` and Noto Sans are required;
+`pdflatex` will not work). This was verified with Tectonic 0.17.0:
 
 ```sh
 xelatex multi_tier_agri_ecological_optimization_framework.tex
