@@ -8,6 +8,8 @@
 *.out
 *.synctex.gz
 *.toc
+*.xdv
+*.pdf
 __pycache__/
 *.py[cod]
 *$py.class

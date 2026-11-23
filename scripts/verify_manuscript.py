@@ -25,3 +25,19 @@ print(f"figures referenced: {imgs}")
 available = {x.name for x in (root / "figures").glob("*.png")}
 missing = [f for f in imgs if f.replace("\\_", "_").split("/")[-1] not in available]
 print(f"missing figure files: {missing}")
+
+inputs = re.findall(r"\\input\{([^}]+)\}", s)
+missing_inputs = [f for f in inputs if not (root / f).is_file()]
+print(f"generated tables referenced: {inputs}  missing: {missing_inputs}")
+included = "\n".join((root / f).read_text(encoding="utf-8") for f in inputs if (root / f).is_file())
+refs |= set(re.findall(r"\\(?:ref|eqref)\{([^}]+)\}", included))
+labels |= set(re.findall(r"\\label\{([^}]+)\}", included))
+print(f"refs/labels including generated tables: {len(refs)}/{len(labels)}  missing: {sorted(refs - labels)}")
+
+stale = ["four policies", "32.3", "29.5", "all 80 per-seed records", "status-quo comparator used in earlier drafts"]
+found = [x for x in stale if x in s]
+print(f"stale manuscript text: {found}")
+
+assert not (cites ^ bibs) and not (refs - labels)
+assert s.count("{") == s.count("}") and b == e
+assert not missing and not missing_inputs and not found

@@ -21,8 +21,15 @@
     118,
     119
   ],
+  "policies": [
+    "fixed",
+    "et",
+    "ai_low",
+    "ai_med",
+    "ai_strict"
+  ],
   "summary": {
-    "Conventional": {
+    "fixed": {
       "yield_t_ha": {
         "mean": 5.7635563379305,
         "sd": 0.06812759409201645
@@ -39,7 +46,7 @@
         "mean": -0.17916758496452,
         "sd": 0.4851816263639761
       },
-      "crisis_crop_weeks": {
+      "crop_loss_crop_weeks": {
         "mean": 8.9,
         "sd": 2.5110283068684707
       },
@@ -48,7 +55,7 @@
         "sd": 0.02107714615277759
       }
     },
-    "AI-Low": {
+    "et": {
       "yield_t_ha": {
         "mean": 6.411795345799694,
         "sd": 0.03790179697993498
@@ -58,23 +65,49 @@
         "sd": 381.2622334517666
       },
       "energy_kwh_ha": {
-        "mean": 32.33358174188457,
-        "sd": 0.8648954036921679
+        "mean": 131.04,
+        "sd": 0.0
       },
       "dsoc_g_kg": {
         "mean": -0.17855958666106375,
         "sd": 0.48548604573839443
       },
-      "crisis_crop_weeks": {
+      "crop_loss_crop_weeks": {
         "mean": 4.9,
         "sd": 0.30779350562554625
       },
       "objective": {
-        "mean": 0.6340421741060345,
-        "sd": 0.019024464136463387
+        "mean": 0.6755061932529435,
+        "sd": 0.01832467063536315
       }
     },
-    "AI-Med": {
+    "ai_low": {
+      "yield_t_ha": {
+        "mean": 6.411795345799694,
+        "sd": 0.03790179697993498
+      },
+      "water_m3_ha": {
+        "mean": 5383.479488084238,
+        "sd": 381.2622334517666
+      },
+      "energy_kwh_ha": {
+        "mean": 17.53794391031405,
+        "sd": 0.5947606736602986
+      },
+      "dsoc_g_kg": {
+        "mean": -0.17855958666106375,
+        "sd": 0.48548604573839443
+      },
+      "crop_loss_crop_weeks": {
+        "mean": 4.9,
+        "sd": 0.30779350562554625
+      },
+      "objective": {
+        "mean": 0.6485280708373212,
+        "sd": 0.01832417219102162
+      }
+    },
+    "ai_med": {
       "yield_t_ha": {
         "mean": 5.810689532130973,
         "sd": 0.0343485035130657
@@ -84,23 +117,23 @@
         "sd": 381.2622334517666
       },
       "energy_kwh_ha": {
-        "mean": 32.33358174188457,
-        "sd": 0.8648954036921679
+        "mean": 17.53794391031405,
+        "sd": 0.5947606736602986
       },
       "dsoc_g_kg": {
         "mean": 0.9914404133389807,
         "sd": 0.4854860457383944
       },
-      "crisis_crop_weeks": {
+      "crop_loss_crop_weeks": {
         "mean": 4.9,
         "sd": 0.30779350562554625
       },
       "objective": {
-        "mean": 0.6356493701091247,
-        "sd": 0.020149414714683258
+        "mean": 0.6646211635716981,
+        "sd": 0.018480430190863043
       }
     },
-    "AI-Strict": {
+    "ai_strict": {
       "yield_t_ha": {
         "mean": 5.485979729940437,
         "sd": 0.031104165379865625
@@ -110,751 +143,1399 @@
         "sd": 387.8764592127658
       },
       "energy_kwh_ha": {
-        "mean": 29.546769062607876,
-        "sd": 0.7404886006112431
+        "mean": 16.723913140765184,
+        "sd": 0.4699754154116896
       },
       "dsoc_g_kg": {
         "mean": 1.691821101603655,
         "sd": 0.48538547798773624
       },
-      "crisis_crop_weeks": {
+      "crop_loss_crop_weeks": {
         "mean": 4.4,
         "sd": 0.5026246899500346
       },
       "objective": {
-        "mean": 0.11791830337566475,
-        "sd": 0.024637967097690425
+        "mean": 0.15478887963980767,
+        "sd": 0.022840484160276054
       }
     }
   },
   "raw": {
-    "Conventional": [
+    "fixed": [
       {
-        "policy": "Conventional",
+        "policy": "Conv-Fixed",
         "yield_t_ha": 5.849676893976093,
         "water_m3_ha": 8580.0,
         "energy_kwh_ha": 131.04,
         "dsoc_g_kg": -0.9088155483536875,
-        "crisis_crop_weeks": 8,
+        "crop_loss_crop_weeks": 8,
         "objective": 0.5535171868018514
       },
       {
-        "policy": "Conventional",
+        "policy": "Conv-Fixed",
         "yield_t_ha": 5.80136328609127,
         "water_m3_ha": 8580.0,
         "energy_kwh_ha": 131.04,
         "dsoc_g_kg": 0.04849716292149697,
-        "crisis_crop_weeks": 8,
+        "crop_loss_crop_weeks": 8,
         "objective": 0.5987985215579777
       },
       {
-        "policy": "Conventional",
+        "policy": "Conv-Fixed",
         "yield_t_ha": 5.721234385130198,
         "water_m3_ha": 8580.0,
         "energy_kwh_ha": 131.04,
         "dsoc_g_kg": -0.47408818831163657,
-        "crisis_crop_weeks": 7,
+        "crop_loss_crop_weeks": 7,
         "objective": 0.5640049595729758
       },
       {
-        "policy": "Conventional",
+        "policy": "Conv-Fixed",
         "yield_t_ha": 5.769040363756702,
         "water_m3_ha": 8580.0,
         "energy_kwh_ha": 131.04,
         "dsoc_g_kg": 0.5178131747927206,
-        "crisis_crop_weeks": 8,
+        "crop_loss_crop_weeks": 8,
         "objective": 0.6097050106587608
       },
       {
-        "policy": "Conventional",
+        "policy": "Conv-Fixed",
         "yield_t_ha": 5.7239498360139685,
         "water_m3_ha": 8580.0,
         "energy_kwh_ha": 131.04,
         "dsoc_g_kg": -0.7816316147679458,
-        "crisis_crop_weeks": 12,
+        "crop_loss_crop_weeks": 12,
         "objective": 0.5262593287792632
       },
       {
-        "policy": "Conventional",
+        "policy": "Conv-Fixed",
         "yield_t_ha": 5.8496673293967305,
         "water_m3_ha": 8580.0,
         "energy_kwh_ha": 131.04,
         "dsoc_g_kg": -0.11092534699160383,
-        "crisis_crop_weeks": 7,
+        "crop_loss_crop_weeks": 7,
         "objective": 0.5748437526250437
       },
       {
-        "policy": "Conventional",
+        "policy": "Conv-Fixed",
         "yield_t_ha": 5.680569562509042,
         "water_m3_ha": 8580.0,
         "energy_kwh_ha": 131.04,
         "dsoc_g_kg": -0.18113626535558147,
-        "crisis_crop_weeks": 14,
+        "crop_loss_crop_weeks": 14,
         "objective": 0.5454913511495698
       },
       {
-        "policy": "Conventional",
+        "policy": "Conv-Fixed",
         "yield_t_ha": 5.738680416258148,
         "water_m3_ha": 8580.0,
         "energy_kwh_ha": 131.04,
         "dsoc_g_kg": 0.29024503368392685,
-        "crisis_crop_weeks": 8,
+        "crop_loss_crop_weeks": 8,
         "objective": 0.5775400691040806
       },
       {
-        "policy": "Conventional",
+        "policy": "Conv-Fixed",
         "yield_t_ha": 5.853489456275195,
         "water_m3_ha": 8580.0,
         "energy_kwh_ha": 131.04,
         "dsoc_g_kg": -0.37075255400173646,
-        "crisis_crop_weeks": 7,
+        "crop_loss_crop_weeks": 7,
         "objective": 0.5696746443781181
       },
       {
-        "policy": "Conventional",
+        "policy": "Conv-Fixed",
         "yield_t_ha": 5.647666504563985,
         "water_m3_ha": 8580.0,
         "energy_kwh_ha": 131.04,
         "dsoc_g_kg": -0.4161727263753501,
-        "crisis_crop_weeks": 8,
+        "crop_loss_crop_weeks": 8,
         "objective": 0.5626703716931585
       },
       {
-        "policy": "Conventional",
+        "policy": "Conv-Fixed",
         "yield_t_ha": 5.7423140215430175,
         "water_m3_ha": 8580.0,
         "energy_kwh_ha": 131.04,
         "dsoc_g_kg": -0.11777983136572079,
-        "crisis_crop_weeks": 7,
+        "crop_loss_crop_weeks": 7,
         "objective": 0.583013500144107
       },
       {
-        "policy": "Conventional",
+        "policy": "Conv-Fixed",
         "yield_t_ha": 5.814601220561312,
         "water_m3_ha": 8580.0,
         "energy_kwh_ha": 131.04,
         "dsoc_g_kg": 0.16744944890875413,
-        "crisis_crop_weeks": 14,
+        "crop_loss_crop_weeks": 14,
         "objective": 0.5719150394903622
       },
       {
-        "policy": "Conventional",
+        "policy": "Conv-Fixed",
         "yield_t_ha": 5.778415138604579,
         "water_m3_ha": 8580.0,
         "energy_kwh_ha": 131.04,
         "dsoc_g_kg": -0.9806739687756361,
-        "crisis_crop_weeks": 12,
+        "crop_loss_crop_weeks": 12,
         "objective": 0.5437969826405582
       },
       {
-        "policy": "Conventional",
+        "policy": "Conv-Fixed",
         "yield_t_ha": 5.724675603578798,
         "water_m3_ha": 8580.0,
         "energy_kwh_ha": 131.04,
         "dsoc_g_kg": 0.06331715922096803,
-        "crisis_crop_weeks": 7,
+        "crop_loss_crop_weeks": 7,
         "objective": 0.5678413309714652
       },
       {
-        "policy": "Conventional",
+        "policy": "Conv-Fixed",
         "yield_t_ha": 5.818329446276202,
         "water_m3_ha": 8580.0,
         "energy_kwh_ha": 131.04,
         "dsoc_g_kg": 0.24763750619032132,
-        "crisis_crop_weeks": 8,
+        "crop_loss_crop_weeks": 8,
         "objective": 0.5845340145726612
       },
       {
-        "policy": "Conventional",
+        "policy": "Conv-Fixed",
         "yield_t_ha": 5.703745264923083,
         "water_m3_ha": 8580.0,
         "energy_kwh_ha": 131.04,
         "dsoc_g_kg": 0.44735263839135175,
-        "crisis_crop_weeks": 7,
+        "crop_loss_crop_weeks": 7,
         "objective": 0.6097586663591348
       },
       {
-        "policy": "Conventional",
+        "policy": "Conv-Fixed",
         "yield_t_ha": 5.716980435903758,
         "water_m3_ha": 8580.0,
         "energy_kwh_ha": 131.04,
         "dsoc_g_kg": 0.667217091338348,
-        "crisis_crop_weeks": 13,
+        "crop_loss_crop_weeks": 13,
         "objective": 0.5917021723869131
       },
       {
-        "policy": "Conventional",
+        "policy": "Conv-Fixed",
         "yield_t_ha": 5.6924795645720225,
         "water_m3_ha": 8580.0,
         "energy_kwh_ha": 131.04,
         "dsoc_g_kg": -0.35525983892216173,
-        "crisis_crop_weeks": 8,
+        "crop_loss_crop_weeks": 8,
         "objective": 0.5707804671233979
       },
       {
-        "policy": "Conventional",
+        "policy": "Conv-Fixed",
         "yield_t_ha": 5.905976635327444,
         "water_m3_ha": 8580.0,
         "energy_kwh_ha": 131.04,
         "dsoc_g_kg": -0.596967307409122,
-        "crisis_crop_weeks": 7,
+        "crop_loss_crop_weeks": 7,
         "objective": 0.5806047823094752
       },
       {
-        "policy": "Conventional",
+        "policy": "Conv-Fixed",
         "yield_t_ha": 5.738271393348437,
         "water_m3_ha": 8580.0,
         "energy_kwh_ha": 131.04,
         "dsoc_g_kg": -0.7386777241081055,
-        "crisis_crop_weeks": 8,
+        "crop_loss_crop_weeks": 8,
         "objective": 0.5703446811702144
       }
     ],
-    "AI-Low": [
+    "et": [
+      {
+        "policy": "Conv-ET",
+        "yield_t_ha": 6.393669150619466,
+        "water_m3_ha": 4771.5079358638195,
+        "energy_kwh_ha": 131.04,
+        "dsoc_g_kg": -0.9028731405135271,
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6397479468075778
+      },
+      {
+        "policy": "Conv-ET",
+        "yield_t_ha": 6.385068532349156,
+        "water_m3_ha": 4892.037915895451,
+        "energy_kwh_ha": 131.04,
+        "dsoc_g_kg": 0.05249304971475688,
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6941097211089665
+      },
+      {
+        "policy": "Conv-ET",
+        "yield_t_ha": 6.428153816440132,
+        "water_m3_ha": 5496.510334534938,
+        "energy_kwh_ha": 131.04,
+        "dsoc_g_kg": -0.47408424981504993,
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6600271473162564
+      },
+      {
+        "policy": "Conv-ET",
+        "yield_t_ha": 6.397909239522453,
+        "water_m3_ha": 5022.583112766092,
+        "energy_kwh_ha": 131.04,
+        "dsoc_g_kg": 0.5249591096920447,
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6834477539427462
+      },
+      {
+        "policy": "Conv-ET",
+        "yield_t_ha": 6.382013581363399,
+        "water_m3_ha": 5856.886423939814,
+        "energy_kwh_ha": 131.04,
+        "dsoc_g_kg": -0.7952436249461248,
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6592048682785696
+      },
+      {
+        "policy": "Conv-ET",
+        "yield_t_ha": 6.470030684295899,
+        "water_m3_ha": 5424.76194557742,
+        "energy_kwh_ha": 131.04,
+        "dsoc_g_kg": -0.09927200761218336,
+        "crop_loss_crop_weeks": 4,
+        "objective": 0.6784746984870522
+      },
+      {
+        "policy": "Conv-ET",
+        "yield_t_ha": 6.42085481958604,
+        "water_m3_ha": 5737.922704686317,
+        "energy_kwh_ha": 131.04,
+        "dsoc_g_kg": -0.1880410911691266,
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6602078254540797
+      },
+      {
+        "policy": "Conv-ET",
+        "yield_t_ha": 6.377118291720144,
+        "water_m3_ha": 5722.700746125738,
+        "energy_kwh_ha": 131.04,
+        "dsoc_g_kg": 0.28787500047491754,
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6931858477695131
+      },
+      {
+        "policy": "Conv-ET",
+        "yield_t_ha": 6.4803383184816274,
+        "water_m3_ha": 5451.109605854892,
+        "energy_kwh_ha": 131.04,
+        "dsoc_g_kg": -0.37701413162593456,
+        "crop_loss_crop_weeks": 4,
+        "objective": 0.6811260706996008
+      },
+      {
+        "policy": "Conv-ET",
+        "yield_t_ha": 6.399623839718413,
+        "water_m3_ha": 5662.09458831127,
+        "energy_kwh_ha": 131.04,
+        "dsoc_g_kg": -0.42804671485189516,
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6670503583138765
+      },
+      {
+        "policy": "Conv-ET",
+        "yield_t_ha": 6.47718546174107,
+        "water_m3_ha": 5460.357051609128,
+        "energy_kwh_ha": 131.04,
+        "dsoc_g_kg": -0.11556240087570835,
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6877393218508178
+      },
+      {
+        "policy": "Conv-ET",
+        "yield_t_ha": 6.4143239835138814,
+        "water_m3_ha": 5299.894247573983,
+        "energy_kwh_ha": 131.04,
+        "dsoc_g_kg": 0.1636011664183945,
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6813287928460056
+      },
+      {
+        "policy": "Conv-ET",
+        "yield_t_ha": 6.374099615936186,
+        "water_m3_ha": 5626.091692838781,
+        "energy_kwh_ha": 131.04,
+        "dsoc_g_kg": -0.9651073405818744,
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6519402752778913
+      },
+      {
+        "policy": "Conv-ET",
+        "yield_t_ha": 6.4287246812051215,
+        "water_m3_ha": 5818.669374494346,
+        "energy_kwh_ha": 131.04,
+        "dsoc_g_kg": 0.073866795451909,
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6787900949808461
+      },
+      {
+        "policy": "Conv-ET",
+        "yield_t_ha": 6.4288574565594745,
+        "water_m3_ha": 5133.281596637292,
+        "energy_kwh_ha": 131.04,
+        "dsoc_g_kg": 0.2501083699267581,
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6872478269151022
+      },
+      {
+        "policy": "Conv-ET",
+        "yield_t_ha": 6.453428233735598,
+        "water_m3_ha": 5798.168599861892,
+        "energy_kwh_ha": 131.04,
+        "dsoc_g_kg": 0.4408182263867255,
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.7130331416736948
+      },
+      {
+        "policy": "Conv-ET",
+        "yield_t_ha": 6.366082755497158,
+        "water_m3_ha": 5702.093588118617,
+        "energy_kwh_ha": 131.04,
+        "dsoc_g_kg": 0.6722790508536702,
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.7017801387351301
+      },
+      {
+        "policy": "Conv-ET",
+        "yield_t_ha": 6.363551173888658,
+        "water_m3_ha": 5315.700489657423,
+        "energy_kwh_ha": 131.04,
+        "dsoc_g_kg": -0.360165909877459,
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6708282419574642
+      },
+      {
+        "policy": "Conv-ET",
+        "yield_t_ha": 6.4330609118064475,
+        "water_m3_ha": 4637.237231629534,
+        "energy_kwh_ha": 131.04,
+        "dsoc_g_kg": -0.5973763915415331,
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6661551140918716
+      },
+      {
+        "policy": "Conv-ET",
+        "yield_t_ha": 6.3618123680135605,
+        "water_m3_ha": 4839.980575707997,
+        "energy_kwh_ha": 131.04,
+        "dsoc_g_kg": -0.7344054987300352,
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.654698678551806
+      }
+    ],
+    "ai_low": [
       {
         "policy": "AI-Low",
         "yield_t_ha": 6.393669150619466,
         "water_m3_ha": 4771.5079358638195,
-        "energy_kwh_ha": 31.9696129891213,
+        "energy_kwh_ha": 17.740006764820407,
         "dsoc_g_kg": -0.9028731405135271,
-        "crisis_crop_weeks": 5,
-        "objective": 0.599984134750818
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.613465467782452
       },
       {
         "policy": "AI-Low",
         "yield_t_ha": 6.385068532349156,
         "water_m3_ha": 4892.037915895451,
-        "energy_kwh_ha": 30.833494204702667,
+        "energy_kwh_ha": 18.688480619132065,
         "dsoc_g_kg": 0.05249304971475688,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6569463810619739
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6678488048739101
       },
       {
         "policy": "AI-Low",
         "yield_t_ha": 6.428153816440132,
         "water_m3_ha": 5496.510334534938,
-        "energy_kwh_ha": 31.033734000995295,
+        "energy_kwh_ha": 18.17771926154902,
         "dsoc_g_kg": -0.47408424981504993,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6224116910574595
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6333947586891552
       },
       {
         "policy": "AI-Low",
         "yield_t_ha": 6.397909239522453,
         "water_m3_ha": 5022.583112766092,
-        "energy_kwh_ha": 32.82854561482716,
+        "energy_kwh_ha": 17.09245730167378,
         "dsoc_g_kg": 0.5249591096920447,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6410199944593973
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6565296572813869
       },
       {
         "policy": "AI-Low",
         "yield_t_ha": 6.382013581363399,
         "water_m3_ha": 5856.886423939814,
-        "energy_kwh_ha": 32.961100673259146,
+        "energy_kwh_ha": 16.999268467445237,
         "dsoc_g_kg": -0.7952436249461248,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6154773845649424
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6314361495752444
       },
       {
         "policy": "AI-Low",
         "yield_t_ha": 6.470030684295899,
         "water_m3_ha": 5424.76194557742,
-        "energy_kwh_ha": 33.76004287970736,
+        "energy_kwh_ha": 16.512164761787307,
         "dsoc_g_kg": -0.09927200761218336,
-        "crisis_crop_weeks": 4,
-        "objective": 0.6334151070264743
+        "crop_loss_crop_weeks": 4,
+        "objective": 0.6512689072451179
       },
       {
         "policy": "AI-Low",
         "yield_t_ha": 6.42085481958604,
         "water_m3_ha": 5737.922704686317,
-        "energy_kwh_ha": 31.8081254299705,
+        "energy_kwh_ha": 18.015225245102062,
         "dsoc_g_kg": -0.1880410911691266,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6197057352076608
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6330054331945916
       },
       {
         "policy": "AI-Low",
         "yield_t_ha": 6.377118291720144,
         "water_m3_ha": 5722.700746125738,
-        "energy_kwh_ha": 32.57751354327989,
+        "energy_kwh_ha": 17.375356327193316,
         "dsoc_g_kg": 0.28787500047491754,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6507399554691784
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6658798481711521
       },
       {
         "policy": "AI-Low",
         "yield_t_ha": 6.4803383184816274,
         "water_m3_ha": 5451.109605854892,
-        "energy_kwh_ha": 32.994980734776945,
+        "energy_kwh_ha": 16.888262884082994,
         "dsoc_g_kg": -0.37701413162593456,
-        "crisis_crop_weeks": 4,
-        "objective": 0.638196243604168
+        "crop_loss_crop_weeks": 4,
+        "objective": 0.6540773193239993
       },
       {
         "policy": "AI-Low",
         "yield_t_ha": 6.399623839718413,
         "water_m3_ha": 5662.09458831127,
-        "energy_kwh_ha": 32.97022746038055,
+        "energy_kwh_ha": 17.327444776391523,
         "dsoc_g_kg": -0.42804671485189516,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6229324947628889
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6393420038363536
       },
       {
         "policy": "AI-Low",
         "yield_t_ha": 6.47718546174107,
         "water_m3_ha": 5460.357051609128,
-        "energy_kwh_ha": 31.25750322629215,
+        "energy_kwh_ha": 18.37871190630259,
         "dsoc_g_kg": -0.11556240087570835,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6489142296551341
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6609905478443937
       },
       {
         "policy": "AI-Low",
         "yield_t_ha": 6.4143239835138814,
         "water_m3_ha": 5299.894247573983,
-        "energy_kwh_ha": 33.40288313606266,
+        "energy_kwh_ha": 16.793161566938167,
         "dsoc_g_kg": 0.1636011664183945,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6370979431888405
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6540340017352777
       },
       {
         "policy": "AI-Low",
         "yield_t_ha": 6.374099615936186,
         "water_m3_ha": 5626.091692838781,
-        "energy_kwh_ha": 32.54236088254609,
+        "energy_kwh_ha": 17.261067208636863,
         "dsoc_g_kg": -0.9651073405818744,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6102821044420806
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.62491528874394
       },
       {
         "policy": "AI-Low",
         "yield_t_ha": 6.4287246812051215,
         "water_m3_ha": 5818.669374494346,
-        "energy_kwh_ha": 31.449682821860456,
+        "energy_kwh_ha": 18.229099261788814,
         "dsoc_g_kg": 0.073866795451909,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6394336607633666
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6519350723357414
       },
       {
         "policy": "AI-Low",
         "yield_t_ha": 6.4288574565594745,
         "water_m3_ha": 5133.281596637292,
-        "energy_kwh_ha": 32.3466796118728,
+        "energy_kwh_ha": 17.63901871827033,
         "dsoc_g_kg": 0.2501083699267581,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6458443538085983
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6605057648728406
       },
       {
         "policy": "AI-Low",
         "yield_t_ha": 6.453428233735598,
         "water_m3_ha": 5798.168599861892,
-        "energy_kwh_ha": 31.19157924370368,
+        "energy_kwh_ha": 18.15461198670271,
         "dsoc_g_kg": 0.4408182263867255,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6746740827672476
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6860782872231415
       },
       {
         "policy": "AI-Low",
         "yield_t_ha": 6.366082755497158,
         "water_m3_ha": 5702.093588118617,
-        "energy_kwh_ha": 32.17828635585986,
+        "energy_kwh_ha": 17.654485310659524,
         "dsoc_g_kg": 0.6722790508536702,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6604726948756932
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6746341376983587
       },
       {
         "policy": "AI-Low",
         "yield_t_ha": 6.363551173888658,
         "water_m3_ha": 5315.700489657423,
-        "energy_kwh_ha": 32.30448596634592,
+        "energy_kwh_ha": 17.296453277059886,
         "dsoc_g_kg": -0.360165909877459,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6297902721939266
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6438647260150938
       },
       {
         "policy": "AI-Low",
         "yield_t_ha": 6.4330609118064475,
         "water_m3_ha": 4637.237231629534,
-        "energy_kwh_ha": 32.59973350770872,
+        "energy_kwh_ha": 17.629578037364887,
         "dsoc_g_kg": -0.5973763915415331,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6241418252010432
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6397817864479675
       },
       {
         "policy": "AI-Low",
         "yield_t_ha": 6.3618123680135605,
         "water_m3_ha": 4839.980575707997,
-        "energy_kwh_ha": 33.661062554418095,
+        "energy_kwh_ha": 16.90630452337957,
         "dsoc_g_kg": -0.7344054987300352,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6093631932597997
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6275734538563055
       }
     ],
-    "AI-Med": [
+    "ai_med": [
       {
         "policy": "AI-Med",
         "yield_t_ha": 5.7942626677488915,
         "water_m3_ha": 4771.5079358638195,
-        "energy_kwh_ha": 31.9696129891213,
+        "energy_kwh_ha": 17.740006764820407,
         "dsoc_g_kg": 0.26712685948651727,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6032232125979047
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6301858786611729
       },
       {
         "policy": "AI-Med",
         "yield_t_ha": 5.786468357441424,
         "water_m3_ha": 4892.037915895451,
-        "energy_kwh_ha": 30.833494204702667,
+        "energy_kwh_ha": 18.688480619132065,
         "dsoc_g_kg": 1.2224930497148012,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6627859309188283
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6845907785427006
       },
       {
         "policy": "AI-Med",
         "yield_t_ha": 5.825514396148869,
         "water_m3_ha": 5496.510334534938,
-        "energy_kwh_ha": 31.033734000995295,
+        "energy_kwh_ha": 18.17771926154902,
         "dsoc_g_kg": 0.6959157501849944,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6277991247025091
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6497652599659011
       },
       {
         "policy": "AI-Med",
         "yield_t_ha": 5.798105248317223,
         "water_m3_ha": 5022.583112766092,
-        "energy_kwh_ha": 32.82854561482716,
+        "energy_kwh_ha": 17.09245730167378,
         "dsoc_g_kg": 1.694959109692089,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6415951248798949
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.672614450523874
       },
       {
         "policy": "AI-Med",
         "yield_t_ha": 5.783699808110581,
         "water_m3_ha": 5856.886423939814,
-        "energy_kwh_ha": 32.961100673259146,
+        "energy_kwh_ha": 16.999268467445237,
         "dsoc_g_kg": 0.37475637505391957,
-        "crisis_crop_weeks": 5,
-        "objective": 0.614752790755162
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.646670320775766
       },
       {
         "policy": "AI-Med",
         "yield_t_ha": 5.863465307643158,
         "water_m3_ha": 5424.76194557742,
-        "energy_kwh_ha": 33.76004287970736,
+        "energy_kwh_ha": 16.512164761787307,
         "dsoc_g_kg": 1.070727992387861,
-        "crisis_crop_weeks": 4,
-        "objective": 0.6313584054697432
+        "crop_loss_crop_weeks": 4,
+        "objective": 0.6670660059070308
       },
       {
         "policy": "AI-Med",
         "yield_t_ha": 5.818899680249849,
         "water_m3_ha": 5737.922704686317,
-        "energy_kwh_ha": 31.8081254299705,
+        "energy_kwh_ha": 18.015225245102062,
         "dsoc_g_kg": 0.9819589088309177,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6222065348650886
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6488059308389498
       },
       {
         "policy": "AI-Med",
         "yield_t_ha": 5.77926345187138,
         "water_m3_ha": 5722.700746125738,
-        "energy_kwh_ha": 32.57751354327989,
+        "energy_kwh_ha": 17.375356327193316,
         "dsoc_g_kg": 1.4578750004749619,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6512969530726901
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6815767384766379
       },
       {
         "policy": "AI-Med",
         "yield_t_ha": 5.8728066011239735,
         "water_m3_ha": 5451.109605854892,
-        "energy_kwh_ha": 32.994980734776945,
+        "energy_kwh_ha": 16.888262884082994,
         "dsoc_g_kg": 0.7929858683741098,
-        "crisis_crop_weeks": 4,
-        "objective": 0.6382693064125823
+        "crop_loss_crop_weeks": 4,
+        "objective": 0.6700314578522455
       },
       {
         "policy": "AI-Med",
         "yield_t_ha": 5.799659104744812,
         "water_m3_ha": 5662.09458831127,
-        "energy_kwh_ha": 32.97022746038055,
+        "energy_kwh_ha": 17.327444776391523,
         "dsoc_g_kg": 0.7419532851481492,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6218175211157473
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.654636539262677
       },
       {
         "policy": "AI-Med",
         "yield_t_ha": 5.869949324702844,
         "water_m3_ha": 5460.357051609128,
-        "energy_kwh_ha": 31.25750322629215,
+        "energy_kwh_ha": 18.37871190630259,
         "dsoc_g_kg": 1.054437599124336,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6530920273632981
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6772446637418175
       },
       {
         "policy": "AI-Med",
         "yield_t_ha": 5.812981110059454,
         "water_m3_ha": 5299.894247573983,
-        "energy_kwh_ha": 33.40288313606266,
+        "energy_kwh_ha": 16.793161566938167,
         "dsoc_g_kg": 1.3336011664184388,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6358699834355221
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.669742100528397
       },
       {
         "policy": "AI-Med",
         "yield_t_ha": 5.77652777694217,
         "water_m3_ha": 5626.091692838781,
-        "energy_kwh_ha": 32.54236088254609,
+        "energy_kwh_ha": 17.261067208636863,
         "dsoc_g_kg": 0.20489265941816992,
-        "crisis_crop_weeks": 5,
-        "objective": 0.611626823510117
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6408931921138357
       },
       {
         "policy": "AI-Med",
         "yield_t_ha": 5.826031742342141,
         "water_m3_ha": 5818.669374494346,
-        "energy_kwh_ha": 31.449682821860456,
+        "energy_kwh_ha": 18.229099261788814,
         "dsoc_g_kg": 1.2438667954519533,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6430801164497341
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6680829395944846
       },
       {
         "policy": "AI-Med",
         "yield_t_ha": 5.826152070007024,
         "water_m3_ha": 5133.281596637292,
-        "energy_kwh_ha": 32.3466796118728,
+        "energy_kwh_ha": 17.63901871827033,
         "dsoc_g_kg": 1.4201083699268024,
-        "crisis_crop_weeks": 5,
-        "objective": 0.647443770605941
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6767665927344252
       },
       {
         "policy": "AI-Med",
         "yield_t_ha": 5.848419336822886,
         "water_m3_ha": 5798.168599861892,
-        "energy_kwh_ha": 31.19157924370368,
+        "energy_kwh_ha": 18.15461198670271,
         "dsoc_g_kg": 1.6108182263867699,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6806412182528229
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.7034496271646109
       },
       {
         "policy": "AI-Med",
         "yield_t_ha": 5.7692624971693,
         "water_m3_ha": 5702.093588118617,
-        "energy_kwh_ha": 32.17828635585986,
+        "energy_kwh_ha": 17.654485310659524,
         "dsoc_g_kg": 1.8422790508537146,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6622113413549708
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6905342270003019
       },
       {
         "policy": "AI-Med",
         "yield_t_ha": 5.766968251336596,
         "water_m3_ha": 5315.700489657423,
-        "energy_kwh_ha": 32.30448596634592,
+        "energy_kwh_ha": 17.296453277059886,
         "dsoc_g_kg": 0.8098340901225853,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6317551923342356
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6599040999765703
       },
       {
         "policy": "AI-Med",
         "yield_t_ha": 5.829961451324594,
         "water_m3_ha": 4637.237231629534,
-        "energy_kwh_ha": 32.59973350770872,
+        "energy_kwh_ha": 17.629578037364887,
         "dsoc_g_kg": 0.5726236084585112,
-        "crisis_crop_weeks": 5,
-        "objective": 0.6251314262140609
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.6564113487079096
       },
       {
         "policy": "AI-Med",
         "yield_t_ha": 5.765392458512291,
         "water_m3_ha": 4839.980575707997,
-        "energy_kwh_ha": 33.661062554418095,
+        "energy_kwh_ha": 16.90630452337957,
         "dsoc_g_kg": 0.4355945012700091,
-        "crisis_crop_weeks": 5,
-        "objective": 0.60703059787164
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.643451119064652
       }
     ],
-    "AI-Strict": [
+    "ai_strict": [
       {
         "policy": "AI-Strict",
         "yield_t_ha": 5.473408841121782,
         "water_m3_ha": 4829.743229981466,
-        "energy_kwh_ha": 29.630870615334626,
+        "energy_kwh_ha": 16.67372357606282,
         "dsoc_g_kg": 0.9673798006629686,
-        "crisis_crop_weeks": 4,
-        "objective": 0.0668378706263162
+        "crop_loss_crop_weeks": 4,
+        "objective": 0.10418184779007987
       },
       {
         "policy": "AI-Strict",
         "yield_t_ha": 5.46609831559202,
         "water_m3_ha": 4950.273210013099,
-        "energy_kwh_ha": 28.915724036436472,
+        "energy_kwh_ha": 17.111207693602648,
         "dsoc_g_kg": 1.9227459908912525,
-        "crisis_crop_weeks": 5,
-        "objective": 0.1669642347524611
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.19899959917531987
       },
       {
         "policy": "AI-Strict",
         "yield_t_ha": 5.502720807069348,
         "water_m3_ha": 5554.745628652585,
-        "energy_kwh_ha": 28.274733054532543,
+        "energy_kwh_ha": 17.426109234447793,
         "dsoc_g_kg": 1.3961686913614457,
-        "crisis_crop_weeks": 4,
-        "objective": 0.12950860231186587
+        "crop_loss_crop_weeks": 4,
+        "objective": 0.15523252137950816
       },
       {
         "policy": "AI-Strict",
         "yield_t_ha": 5.477012916689321,
         "water_m3_ha": 5080.81840688374,
-        "energy_kwh_ha": 30.014631049051538,
+        "energy_kwh_ha": 16.368248525599725,
         "dsoc_g_kg": 2.3952120508685404,
-        "crisis_crop_weeks": 5,
-        "objective": 0.10921721167927555
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.14885270111534515
       },
       {
         "policy": "AI-Strict",
         "yield_t_ha": 5.463501607254124,
         "water_m3_ha": 5915.121718057463,
-        "energy_kwh_ha": 30.282692051817822,
+        "energy_kwh_ha": 16.131936046034426,
         "dsoc_g_kg": 1.0750093162303709,
-        "crisis_crop_weeks": 4,
-        "objective": 0.10020902621025901
+        "crop_loss_crop_weeks": 4,
+        "objective": 0.14228302825823091
       },
       {
         "policy": "AI-Strict",
         "yield_t_ha": 5.538316144746749,
         "water_m3_ha": 5482.997239695068,
-        "energy_kwh_ha": 30.525345313018942,
+        "energy_kwh_ha": 16.100410710019045,
         "dsoc_g_kg": 1.7709809335643123,
-        "crisis_crop_weeks": 4,
-        "objective": 0.11685065628791903
+        "crop_loss_crop_weeks": 4,
+        "objective": 0.16059594262597085
       },
       {
         "policy": "AI-Strict",
         "yield_t_ha": 5.49651665974337,
         "water_m3_ha": 5796.157998803964,
-        "energy_kwh_ha": 28.702759526785336,
+        "energy_kwh_ha": 17.507204613600777,
         "dsoc_g_kg": 1.682211850007369,
-        "crisis_crop_weeks": 5,
-        "objective": 0.08339027819479335
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.11353038223360395
       },
       {
         "policy": "AI-Strict",
         "yield_t_ha": 5.459340611057358,
         "water_m3_ha": 5780.936040243385,
-        "energy_kwh_ha": 29.34824510337087,
+        "energy_kwh_ha": 16.879498683957777,
         "dsoc_g_kg": 2.158127941651413,
-        "crisis_crop_weeks": 4,
-        "objective": 0.14232334636188002
+        "crop_loss_crop_weeks": 4,
+        "objective": 0.17675367013150442
       },
       {
         "policy": "AI-Strict",
         "yield_t_ha": 5.53291012223547,
         "water_m3_ha": 5488.075297984035,
-        "energy_kwh_ha": 30.327067812408636,
+        "energy_kwh_ha": 16.122130693221727,
         "dsoc_g_kg": 1.493876897610218,
-        "crisis_crop_weeks": 4,
-        "objective": 0.1107134395554133
+        "crop_loss_crop_weeks": 4,
+        "objective": 0.15318405338816582
       },
       {
         "policy": "AI-Strict",
         "yield_t_ha": 5.478470326855887,
         "water_m3_ha": 5720.329882428917,
-        "energy_kwh_ha": 30.039716954729812,
+        "energy_kwh_ha": 16.711015219355644,
         "dsoc_g_kg": 1.4422062263246005,
-        "crisis_crop_weeks": 4,
-        "objective": 0.10372825025853455
+        "crop_loss_crop_weeks": 4,
+        "objective": 0.14546667146901193
       },
       {
         "policy": "AI-Strict",
         "yield_t_ha": 5.544397705575146,
         "water_m3_ha": 5518.5923457267745,
-        "energy_kwh_ha": 28.88422980487695,
+        "energy_kwh_ha": 17.394855320516104,
         "dsoc_g_kg": 1.7546905403007873,
-        "crisis_crop_weeks": 4,
-        "objective": 0.1442102499525631
+        "crop_loss_crop_weeks": 4,
+        "objective": 0.1769942568881921
       },
       {
         "policy": "AI-Strict",
         "yield_t_ha": 5.490965449082034,
         "water_m3_ha": 5358.12954169163,
-        "energy_kwh_ha": 30.509484276418615,
+        "energy_kwh_ha": 16.195970618148095,
         "dsoc_g_kg": 2.03385410759489,
-        "crisis_crop_weeks": 5,
-        "objective": 0.12127000500122004
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.1652840814075525
       },
       {
         "policy": "AI-Strict",
         "yield_t_ha": 5.456774736640994,
         "water_m3_ha": 5684.326986956427,
-        "energy_kwh_ha": 30.091448124717964,
+        "energy_kwh_ha": 16.320451033334027,
         "dsoc_g_kg": 0.9051456005946212,
-        "crisis_crop_weeks": 4,
-        "objective": 0.09096978296966748
+        "crop_loss_crop_weeks": 4,
+        "objective": 0.1312214749058843
       },
       {
         "policy": "AI-Strict",
         "yield_t_ha": 5.503206042119587,
         "water_m3_ha": 5876.904668611993,
-        "energy_kwh_ha": 29.047911561363176,
+        "energy_kwh_ha": 17.093598798044976,
         "dsoc_g_kg": 1.9441197366284069,
-        "crisis_crop_weeks": 4,
-        "objective": 0.11428717370751662
+        "crop_loss_crop_weeks": 4,
+        "objective": 0.147393755588492
       },
       {
         "policy": "AI-Strict",
         "yield_t_ha": 5.503318901170789,
         "water_m3_ha": 5191.516890754939,
-        "energy_kwh_ha": 29.8761818440666,
+        "energy_kwh_ha": 16.711634315582273,
         "dsoc_g_kg": 2.1203613111032538,
-        "crisis_crop_weeks": 4,
-        "objective": 0.14030134864587135
+        "crop_loss_crop_weeks": 4,
+        "objective": 0.1804560314934252
       },
       {
         "policy": "AI-Strict",
         "yield_t_ha": 5.524204061770494,
         "water_m3_ha": 5856.403893979539,
-        "energy_kwh_ha": 28.382102705207885,
+        "energy_kwh_ha": 17.364660209530452,
         "dsoc_g_kg": 2.311071167563221,
-        "crisis_crop_weeks": 4,
-        "objective": 0.1545847790156758
+        "crop_loss_crop_weeks": 4,
+        "objective": 0.180763537600312
       },
       {
         "policy": "AI-Strict",
         "yield_t_ha": 5.44996040526782,
         "water_m3_ha": 5760.328882236265,
-        "energy_kwh_ha": 28.622101489571612,
+        "energy_kwh_ha": 16.877143230212063,
         "dsoc_g_kg": 2.542531992030166,
-        "crisis_crop_weeks": 5,
-        "objective": 0.13397368379030075
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.16554104275414191
       },
       {
         "policy": "AI-Strict",
         "yield_t_ha": 5.447808560900595,
         "water_m3_ha": 5373.9357837750695,
-        "energy_kwh_ha": 29.372941774408016,
+        "energy_kwh_ha": 16.69176831799129,
         "dsoc_g_kg": 1.5100870312990367,
-        "crisis_crop_weeks": 5,
-        "objective": 0.11313171934379394
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.1474510501220618
       },
       {
         "policy": "AI-Strict",
         "yield_t_ha": 5.464331808009086,
         "water_m3_ha": 4631.577402253724,
-        "energy_kwh_ha": 29.644920982241143,
+        "energy_kwh_ha": 16.468253760636138,
         "dsoc_g_kg": 1.274793403339769,
-        "crisis_crop_weeks": 5,
-        "objective": 0.11759377651683547
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.15941269579485337
       },
       {
         "policy": "AI-Strict",
         "yield_t_ha": 5.446330575906763,
         "water_m3_ha": 4898.2158698256435,
-        "energy_kwh_ha": 30.44227317179903,
+        "energy_kwh_ha": 16.32844221540586,
         "dsoc_g_kg": 1.1358474424464582,
-        "crisis_crop_weeks": 5,
-        "objective": 0.0983006323311324
+        "crop_loss_crop_weeks": 5,
+        "objective": 0.14217924867449766
       }
     ]
+  },
+  "paired_statistics": {
+    "et": {
+      "yield_t_ha": {
+        "mean": 0.6482390078691951,
+        "lo": 0.6173494887677018,
+        "hi": 0.6791285269706884,
+        "p": 1.4296703790229692e-20,
+        "t": 43.92363092536499
+      },
+      "water_m3_ha": {
+        "mean": -3196.5205119157627,
+        "lo": -3374.956729795024,
+        "hi": -3018.0842940365014,
+        "p": 2.7980440549653486e-19,
+        "t": -37.49459835769606
+      },
+      "energy_kwh_ha": {
+        "mean": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "p": 1.0,
+        "t": 0.0
+      },
+      "dsoc_g_kg": {
+        "mean": 0.0006079983034562586,
+        "lo": -0.0030168873392731055,
+        "hi": 0.004232883946185623,
+        "p": 0.7294054581665484,
+        "t": 0.3510607504890055
+      },
+      "crop_loss_crop_weeks": {
+        "mean": -4.0,
+        "lo": -5.1463964880003505,
+        "hi": -2.8536035119996495,
+        "p": 6.314801540658161e-07,
+        "t": -7.302967433402215
+      },
+      "objective": {
+        "mean": 0.10266635157848898,
+        "lo": 0.09644694114789681,
+        "hi": 0.10888576200908115,
+        "p": 1.2952407914660226e-18,
+        "t": 34.55040406646041
+      }
+    },
+    "ai_low": {
+      "yield_t_ha": {
+        "mean": 0.6482390078691951,
+        "lo": 0.6173494887677018,
+        "hi": 0.6791285269706884,
+        "p": 1.4296703790229692e-20,
+        "t": 43.92363092536499
+      },
+      "water_m3_ha": {
+        "mean": -3196.5205119157627,
+        "lo": -3374.956729795024,
+        "hi": -3018.0842940365014,
+        "p": 2.7980440549653486e-19,
+        "t": -37.49459835769606
+      },
+      "energy_kwh_ha": {
+        "mean": -113.50205608968592,
+        "lo": -113.78041265333096,
+        "hi": -113.22369952604089,
+        "p": 5.158875453573084e-45,
+        "t": -853.4468543140094
+      },
+      "dsoc_g_kg": {
+        "mean": 0.0006079983034562586,
+        "lo": -0.0030168873392731055,
+        "hi": 0.004232883946185623,
+        "p": 0.7294054581665484,
+        "t": 0.3510607504890055
+      },
+      "crop_loss_crop_weeks": {
+        "mean": -4.0,
+        "lo": -5.1463964880003505,
+        "hi": -2.8536035119996495,
+        "p": 6.314801540658161e-07,
+        "t": -7.302967433402215
+      },
+      "objective": {
+        "mean": 0.07568822916286673,
+        "lo": 0.06958478234873633,
+        "hi": 0.08179167597699713,
+        "p": 2.663164096744152e-16,
+        "t": 25.955380475617275
+      }
+    },
+    "ai_med": {
+      "yield_t_ha": {
+        "mean": 0.04713319420047375,
+        "lo": 0.016583472563099687,
+        "hi": 0.07768291583784781,
+        "p": 0.004415349621185541,
+        "t": 3.229191754794968
+      },
+      "water_m3_ha": {
+        "mean": -3196.5205119157627,
+        "lo": -3374.956729795024,
+        "hi": -3018.0842940365014,
+        "p": 2.7980440549653486e-19,
+        "t": -37.49459835769606
+      },
+      "energy_kwh_ha": {
+        "mean": -113.50205608968592,
+        "lo": -113.78041265333096,
+        "hi": -113.22369952604089,
+        "p": 5.158875453573084e-45,
+        "t": -853.4468543140094
+      },
+      "dsoc_g_kg": {
+        "mean": 1.1706079983035007,
+        "lo": 1.1669831126607713,
+        "hi": 1.1742328839462302,
+        "p": 4.334218002244665e-43,
+        "t": 675.9139294907997
+      },
+      "crop_loss_crop_weeks": {
+        "mean": -4.0,
+        "lo": -5.1463964880003505,
+        "hi": -2.8536035119996495,
+        "p": 6.314801540658161e-07,
+        "t": -7.302967433402215
+      },
+      "objective": {
+        "mean": 0.09178132189724357,
+        "lo": 0.08578619593822744,
+        "hi": 0.0977764478562597,
+        "p": 5.297677238427473e-18,
+        "t": 32.04278205154655
+      }
+    },
+    "ai_strict": {
+      "yield_t_ha": {
+        "mean": -0.27757660799006245,
+        "lo": -0.3103960947783307,
+        "hi": -0.24475712120179424,
+        "p": 2.8920182064181574e-13,
+        "t": -17.70212073127066
+      },
+      "water_m3_ha": {
+        "mean": -3142.5434540722135,
+        "lo": -3324.075224894936,
+        "hi": -2961.011683249491,
+        "p": 5.316114396010747e-19,
+        "t": -36.232880952942274
+      },
+      "energy_kwh_ha": {
+        "mean": -114.31608685923484,
+        "lo": -114.5360421243107,
+        "hi": -114.09613159415899,
+        "p": 5.135120870220246e-47,
+        "t": -1087.795372934996
+      },
+      "dsoc_g_kg": {
+        "mean": 1.8709886865681746,
+        "lo": 1.867377998455888,
+        "hi": 1.8745993746804612,
+        "p": 5.4336859919605e-47,
+        "t": 1084.5645496733257
+      },
+      "crop_loss_crop_weeks": {
+        "mean": -4.5,
+        "lo": -5.610642555933871,
+        "hi": -3.389357444066129,
+        "p": 6.974658986227728e-08,
+        "t": -8.480323569915672
+      },
+      "objective": {
+        "mean": -0.41805096203464676,
+        "lo": -0.4261798441006252,
+        "hi": -0.4099220799686683,
+        "p": 6.1814807872839525e-28,
+        "t": -107.63973599384836
+      }
+    }
+  },
+  "sensitivity": [
+    {
+      "coefficient": "a_org",
+      "factor": 0.75,
+      "ai_low_yield": 6.411795345799694,
+      "ai_strict_dsoc": 1.2238211016035911,
+      "ai_strict_crop_loss": 4.4,
+      "checks": {
+        "C1_ai_low_yield_gt_fixed": true,
+        "C2_dsoc_monotone": true,
+        "C3_strict_fewer_crop_losses": true,
+        "C4_strict_lower_energy": true
+      },
+      "all_hold": true
+    },
+    {
+      "coefficient": "a_org",
+      "factor": 1.25,
+      "ai_low_yield": 6.411795345799694,
+      "ai_strict_dsoc": 2.1598211016036037,
+      "ai_strict_crop_loss": 4.4,
+      "checks": {
+        "C1_ai_low_yield_gt_fixed": true,
+        "C2_dsoc_monotone": true,
+        "C3_strict_fewer_crop_losses": true,
+        "C4_strict_lower_energy": true
+      },
+      "all_hold": true
+    },
+    {
+      "coefficient": "a_org_dep",
+      "factor": 0.75,
+      "ai_low_yield": 6.411795345799694,
+      "ai_strict_dsoc": 1.7212226057873017,
+      "ai_strict_crop_loss": 4.4,
+      "checks": {
+        "C1_ai_low_yield_gt_fixed": true,
+        "C2_dsoc_monotone": true,
+        "C3_strict_fewer_crop_losses": true,
+        "C4_strict_lower_energy": true
+      },
+      "all_hold": true
+    },
+    {
+      "coefficient": "a_org_dep",
+      "factor": 1.25,
+      "ai_low_yield": 6.411795345799694,
+      "ai_strict_dsoc": 1.6624195974200044,
+      "ai_strict_crop_loss": 4.4,
+      "checks": {
+        "C1_ai_low_yield_gt_fixed": true,
+        "C2_dsoc_monotone": true,
+        "C3_strict_fewer_crop_losses": true,
+        "C4_strict_lower_energy": true
+      },
+      "all_hold": true
+    },
+    {
+      "coefficient": "a_deg_chem",
+      "factor": 0.75,
+      "ai_low_yield": 6.411795345799694,
+      "ai_strict_dsoc": 1.691821101603655,
+      "ai_strict_crop_loss": 4.4,
+      "checks": {
+        "C1_ai_low_yield_gt_fixed": true,
+        "C2_dsoc_monotone": true,
+        "C3_strict_fewer_crop_losses": true,
+        "C4_strict_lower_energy": true
+      },
+      "all_hold": true
+    },
+    {
+      "coefficient": "a_deg_chem",
+      "factor": 1.25,
+      "ai_low_yield": 6.411795345799694,
+      "ai_strict_dsoc": 1.691821101603655,
+      "ai_strict_crop_loss": 4.4,
+      "checks": {
+        "C1_ai_low_yield_gt_fixed": true,
+        "C2_dsoc_monotone": true,
+        "C3_strict_fewer_crop_losses": true,
+        "C4_strict_lower_energy": true
+      },
+      "all_hold": true
+    },
+    {
+      "coefficient": "a_deg_dep",
+      "factor": 0.75,
+      "ai_low_yield": 6.411795345799694,
+      "ai_strict_dsoc": 1.691821101603655,
+      "ai_strict_crop_loss": 4.4,
+      "checks": {
+        "C1_ai_low_yield_gt_fixed": true,
+        "C2_dsoc_monotone": true,
+        "C3_strict_fewer_crop_losses": true,
+        "C4_strict_lower_energy": true
+      },
+      "all_hold": true
+    },
+    {
+      "coefficient": "a_deg_dep",
+      "factor": 1.25,
+      "ai_low_yield": 6.411795345799694,
+      "ai_strict_dsoc": 1.691821101603655,
+      "ai_strict_crop_loss": 4.4,
+      "checks": {
+        "C1_ai_low_yield_gt_fixed": true,
+        "C2_dsoc_monotone": true,
+        "C3_strict_fewer_crop_losses": true,
+        "C4_strict_lower_energy": true
+      },
+      "all_hold": true
+    },
+    {
+      "coefficient": "a_deg_decay",
+      "factor": 0.75,
+      "ai_low_yield": 6.411795345799694,
+      "ai_strict_dsoc": 1.691821101603655,
+      "ai_strict_crop_loss": 4.4,
+      "checks": {
+        "C1_ai_low_yield_gt_fixed": true,
+        "C2_dsoc_monotone": true,
+        "C3_strict_fewer_crop_losses": true,
+        "C4_strict_lower_energy": true
+      },
+      "all_hold": true
+    },
+    {
+      "coefficient": "a_deg_decay",
+      "factor": 1.25,
+      "ai_low_yield": 6.411795345799694,
+      "ai_strict_dsoc": 1.691821101603655,
+      "ai_strict_crop_loss": 4.4,
+      "checks": {
+        "C1_ai_low_yield_gt_fixed": true,
+        "C2_dsoc_monotone": true,
+        "C3_strict_fewer_crop_losses": true,
+        "C4_strict_lower_energy": true
+      },
+      "all_hold": true
+    },
+    {
+      "coefficient": "soc_scale",
+      "factor": 0.75,
+      "ai_low_yield": 6.411795345799694,
+      "ai_strict_dsoc": 1.2688658262027415,
+      "ai_strict_crop_loss": 4.4,
+      "checks": {
+        "C1_ai_low_yield_gt_fixed": true,
+        "C2_dsoc_monotone": true,
+        "C3_strict_fewer_crop_losses": true,
+        "C4_strict_lower_energy": true
+      },
+      "all_hold": true
+    },
+    {
+      "coefficient": "soc_scale",
+      "factor": 1.25,
+      "ai_low_yield": 6.411795345799694,
+      "ai_strict_dsoc": 2.114776377004569,
+      "ai_strict_crop_loss": 4.4,
+      "checks": {
+        "C1_ai_low_yield_gt_fixed": true,
+        "C2_dsoc_monotone": true,
+        "C3_strict_fewer_crop_losses": true,
+        "C4_strict_lower_energy": true
+      },
+      "all_hold": true
+    },
+    {
+      "coefficient": "yield_base",
+      "factor": 0.75,
+      "ai_low_yield": 5.0492888348172595,
+      "ai_strict_dsoc": 1.691821101603655,
+      "ai_strict_crop_loss": 4.4,
+      "checks": {
+        "C1_ai_low_yield_gt_fixed": true,
+        "C2_dsoc_monotone": true,
+        "C3_strict_fewer_crop_losses": true,
+        "C4_strict_lower_energy": true
+      },
+      "all_hold": true
+    },
+    {
+      "coefficient": "yield_base",
+      "factor": 1.25,
+      "ai_low_yield": 7.774301856782129,
+      "ai_strict_dsoc": 1.691821101603655,
+      "ai_strict_crop_loss": 4.4,
+      "checks": {
+        "C1_ai_low_yield_gt_fixed": true,
+        "C2_dsoc_monotone": true,
+        "C3_strict_fewer_crop_losses": true,
+        "C4_strict_lower_energy": true
+      },
+      "all_hold": true
+    },
+    {
+      "coefficient": "yield_span",
+      "factor": 0.75,
+      "ai_low_yield": 6.171353020332206,
+      "ai_strict_dsoc": 1.691821101603655,
+      "ai_strict_crop_loss": 4.4,
+      "checks": {
+        "C1_ai_low_yield_gt_fixed": true,
+        "C2_dsoc_monotone": true,
+        "C3_strict_fewer_crop_losses": true,
+        "C4_strict_lower_energy": true
+      },
+      "all_hold": true
+    },
+    {
+      "coefficient": "yield_span",
+      "factor": 1.25,
+      "ai_low_yield": 6.6522376712671845,
+      "ai_strict_dsoc": 1.691821101603655,
+      "ai_strict_crop_loss": 4.4,
+      "checks": {
+        "C1_ai_low_yield_gt_fixed": true,
+        "C2_dsoc_monotone": true,
+        "C3_strict_fewer_crop_losses": true,
+        "C4_strict_lower_energy": true
+      },
+      "all_hold": true
+    },
+    {
+      "coefficient": "drought_cext",
+      "factor": 0.75,
+      "ai_low_yield": 6.411795345799694,
+      "ai_strict_dsoc": 1.691821101603655,
+      "ai_strict_crop_loss": 4.4,
+      "checks": {
+        "C1_ai_low_yield_gt_fixed": true,
+        "C2_dsoc_monotone": true,
+        "C3_strict_fewer_crop_losses": true,
+        "C4_strict_lower_energy": true
+      },
+      "all_hold": true
+    },
+    {
+      "coefficient": "drought_cext",
+      "factor": 1.25,
+      "ai_low_yield": 6.411795345799694,
+      "ai_strict_dsoc": 1.691821101603655,
+      "ai_strict_crop_loss": 4.4,
+      "checks": {
+        "C1_ai_low_yield_gt_fixed": true,
+        "C2_dsoc_monotone": true,
+        "C3_strict_fewer_crop_losses": true,
+        "C4_strict_lower_energy": true
+      },
+      "all_hold": true
+    },
+    {
+      "coefficient": "drought_sdeg",
+      "factor": 0.75,
+      "ai_low_yield": 6.411795345799694,
+      "ai_strict_dsoc": 1.691821101603655,
+      "ai_strict_crop_loss": 4.4,
+      "checks": {
+        "C1_ai_low_yield_gt_fixed": true,
+        "C2_dsoc_monotone": true,
+        "C3_strict_fewer_crop_losses": true,
+        "C4_strict_lower_energy": true
+      },
+      "all_hold": true
+    },
+    {
+      "coefficient": "drought_sdeg",
+      "factor": 1.25,
+      "ai_low_yield": 6.411795345799694,
+      "ai_strict_dsoc": 1.691821101603655,
+      "ai_strict_crop_loss": 4.4,
+      "checks": {
+        "C1_ai_low_yield_gt_fixed": true,
+        "C2_dsoc_monotone": true,
+        "C3_strict_fewer_crop_losses": true,
+        "C4_strict_lower_energy": true
+      },
+      "all_hold": true
+    }
+  ],
+  "headline_checks": {
+    "C1_ai_low_yield_gt_fixed": true,
+    "C2_dsoc_monotone": true,
+    "C3_strict_fewer_crop_losses": true,
+    "C4_strict_lower_energy": true
   }
 }

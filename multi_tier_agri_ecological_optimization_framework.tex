@@ -2,8 +2,7 @@
 
 \usepackage[a4paper, margin=2.4cm]{geometry}
 \usepackage{fontspec}
-\usepackage[english, bidi=basic, provide=*]{babel}
-\babelprovide[import, onchar=ids fonts]{english}
+\usepackage[english]{babel}
 \babelfont{rm}{Noto Sans}
 \usepackage{amsmath,amssymb,amsfonts,mathtools}
 \usepackage{booktabs,array,longtable}
@@ -20,6 +19,7 @@
 \newcommand{\pos}[1]{\left[#1\right]_{+}}
 \newcommand{\clip}[1]{\mathrm{clip}\!\left(#1\right)}
 \newcommand{\Inat}{\mathbb{I}_{\mathrm{nat}}}
+\newcommand{\Inatt}{\mathbb{I}_{\mathrm{nat},t}}
 \newcommand{\AAI}{\mathrm{AAI}}
 
 \title{\textbf{A Multi-Tier Agri-Ecological Optimization Framework with Adaptive State-Dependent Orchestration and Nature-Boundary Gatekeeping}}
@@ -37,7 +37,7 @@
 \maketitle
 
 \begin{abstract}
-Conventional precision agriculture frequently optimizes short-term crop output via linear, single-objective formulations while overlooking cumulative soil degradation, seasonal water depletion, and sensor-network energy overhead. This paper presents a multi-tier agri-ecological optimization framework governed by an adaptive, state-dependent orchestration policy across five coupled subsystems: soil quality ($S$), crop performance ($C$), internet-of-things (IoT) monitoring ($M$), hydrological water balance ($W$), and supplier/infrastructure context ($\mathrm{Sup}$). Rather than assuming autonomous reinforcement learning without training guarantees, we formulate three calibrated strictness regimes parameterized by $\tau \in \{0, 1, 2\}$ (\texttt{AI-Low}, \texttt{AI-Med}, and \texttt{AI-Strict}). The framework resolves four mathematical and operational flaws common in weighted sustainability indices: (i) a positive-part clipped multiplicative soil--crop core $\pos{S_{\mathrm{net}}}\pos{C_{\mathrm{net}}}$ that prevents simultaneous degradation from yielding a positive product; (ii) a strictly non-decreasing degradation penalty map $\psi_\tau(x)$ on $[0,1]$ so higher strictness never under-penalizes normalized stress; (iii) disambiguated water storage ($\theta_{\mathrm{root},t}$) and one-sided depletion flux ($D_t^+$); and (iv) an explicit nature-boundary gate $\Inat^{(\tau)}$ paired with a deterministic drought triage fallback policy. Finally, we specify and execute a complete, seed-controlled 52-week benchmark protocol with a six-week late-summer drought disturbance (Weeks~24--29) for evaluating physical agro-ecological outcomes alongside within-tier diagnostics. Across 20 seeds, \texttt{AI-Low} maximises yield ($6.41 \pm 0.04$\,t/ha) while using $37\%$ less irrigation than the conventional policy; \texttt{AI-Strict} achieves the largest soil-carbon gain ($+1.69 \pm 0.49$\,g/kg), the lowest IoT energy ($29.5 \pm 0.7$\,kWh/ha) and the fewest crop-loss events ($4.40 \pm 0.50$ crop-weeks), at a yield cost of $15\%$.
+Conventional precision agriculture frequently optimizes short-term crop output via linear, single-objective formulations while overlooking cumulative soil degradation, seasonal water depletion, and sensor-network energy overhead. This paper presents a multi-tier agri-ecological optimization framework governed by an adaptive, state-dependent orchestration policy across five coupled subsystems: soil quality ($S$), crop performance ($C$), internet-of-things (IoT) monitoring ($M$), hydrological water balance ($W$), and supplier/infrastructure context ($\mathrm{Sup}$). Rather than assuming autonomous reinforcement learning without training guarantees, we formulate three calibrated strictness regimes parameterized by $\tau \in \{0, 1, 2\}$ (\texttt{AI-Low}, \texttt{AI-Med}, and \texttt{AI-Strict}). The framework resolves four mathematical and operational flaws common in weighted sustainability indices: (i) a positive-part clipped multiplicative soil--crop core $\pos{S_{\mathrm{net}}}\pos{C_{\mathrm{net}}}$ that prevents simultaneous degradation from yielding a positive product; (ii) a strictly non-decreasing degradation penalty map $\psi_\tau(x)$ on $[0,1]$ so higher strictness never under-penalizes normalized stress; (iii) disambiguated water storage ($\theta_{\mathrm{root},t}$) and one-sided depletion flux ($D_t^+$); and (iv) an explicit nature-boundary gate $\Inat^{(\tau)}$ paired with a deterministic drought triage fallback policy. Finally, we specify and execute a seed-controlled 52-week benchmark with a six-week late-summer drought (Weeks~24--29) against \emph{two} conventional baselines---fixed-rate and ET-scheduled irrigation---plus the three strictness tiers. Across 20 seeds, ET-scheduled irrigation alone delivers the entire water saving ($8580 \to 5383$\,m$^3$/ha, $-37\%$) and yield gain ($5.76 \to 6.41$\,t/ha) relative to fixed-rate scheduling; adaptive duty cycling then lowers IoT energy from $131.0$ to $16.7$--$17.5$\,kWh/ha ($-87\%$) with no further change in water or yield. The strictness ladder is a genuine trade-off: $\Delta$SOC rises from $-0.18$ to $+1.69$\,g/kg and crop-loss events fall from $8.90$ to $4.40$ crop-weeks, while yield declines to $5.49$\,t/ha at $\tau=2$. Paired $t$-tests support the differences, and all four headline conclusions survive 20 one-at-a-time coefficient perturbations.
 \end{abstract}
 
 \noindent\textbf{Keywords:} Agri-ecological optimization; Adaptive state-dependent control; Nature-boundary gatekeeping; IoT duty-cycling; Hydrological water balance; Regenerative agriculture.
@@ -58,7 +58,7 @@ This paper makes four concrete contributions:
 \begin{enumerate}
   \item \textbf{Unified Multi-Tier Objective Family ($\tau \in \{0,1,2\}$):} We define a single parameterized objective family spanning \texttt{AI-Low} ($\tau=0$, transitional/compensatory), \texttt{AI-Med} ($\tau=1$, balanced regenerative), and \texttt{AI-Strict} ($\tau=2$, zero-compromise nature-locked). We combine positive-part clipping $\pos{x} = \max(x, 0)$ with a strictly monotone strictness penalty $\psi_2(x) = 1 - (1 - x)^2 \ge x$ on $[0,1]$ so that \texttt{AI-Strict} penalizes degradation at least as strongly as \texttt{AI-Med} across the entire unit interval.
   \item \textbf{State-Dependent IoT Duty-Cycle and Hydrological Coupling:} We bound orchestration scaling factors $\beta_{\AAI}, \phi_{\AAI} \in [1, 5]$ as deterministic functions of observable telemetry and infrastructure readiness, preventing artificial score inflation while linking polling frequency and irrigation allocation to field transients and seasonal evapotranspiration.
-  \item \textbf{Hard Ecological Constraints and Deterministic Drought Fallback:} We define the exact gating behaviour of the nature indicator $\Inat^{(\tau)}_t$ and specify an operational triage update rule when drought prevents meeting critical root-zone moisture floors.
+  \item \textbf{Hard Ecological Constraints and Deterministic Drought Fallback:} We define the exact gating behaviour of the nature indicator $\Inatt^{(\tau)}$ and specify an operational triage update rule when drought prevents meeting critical root-zone moisture floors.
   \item \textbf{Disambiguated Hydrological Storage and Flux:} We separate weekly depletion flux $D_t$ ($\mathrm{m}^3/\mathrm{week}$) from per-crop root-zone storage $\theta_{\mathrm{root},k,t}$ ($\mathrm{m}^3$), define one-sided depletion $D_t^+=\pos{D_t}$, and give a per-crop storage recursion with field-capacity clipping and explicit deep percolation.
 \end{enumerate}
 
@@ -137,7 +137,7 @@ Here $\mathcal{D}=\{24,\dots,29\}$ is the drought window and $C^{\mathrm{base}}$
   Y_k = Y_k^{\max}\,\frac{\sum_t \mathrm{ETa}_{k,t}}{\sum_t \mathrm{ET}_{c,k,t}}\left(0.85+0.15\,\frac{C_{\mathrm{chem}}}{120}\right),
   \label{eq:yield}
 \end{equation}
-and cumulative IoT energy $E=\sum_t M_{\mathrm{duty},t}\,P_{\mathrm{node}}\,N_{\mathrm{nodes}}\,h/1000$ with $P_{\mathrm{node}}=0.5$\,W, $N_{\mathrm{nodes}}=30$ and $h=168$\,h/week. All four policies are driven by the same rainfall and thermal draws for a given seed.
+and cumulative IoT energy $E=\sum_t M_{\mathrm{duty},t}\,P_{\mathrm{node}}\,N_{\mathrm{nodes}}\,h/1000$ with $P_{\mathrm{node}}=0.5$\,W, $N_{\mathrm{nodes}}=30$ and $h=168$\,h/week. All five policies are driven by the same rainfall and thermal draws for a given seed.
 
 \subsection{Bounded State-Dependent Orchestration Logic}
 Orchestration scaling factors $\beta_{\AAI,t}$ and $\phi_{\AAI}$ are deterministic functions bounded within $[1.0, 5.0]$, preventing unconstrained score manipulation while aligning penalty relaxation with telemetry demand:
@@ -149,11 +149,11 @@ where $g_{\theta,t} = |\Delta\bar\theta_{\mathrm{root},t}|/\bar\theta_{\mathrm{f
 \begin{equation}
   M_{\mathrm{duty},t} = \begin{cases}
     M_{\min}, & \text{drought triage},\\
-    \clip{M_{\min}+0.35/\beta_{\AAI,t}}, & \text{otherwise}.
+    \clip{M_{\min}+(M_{\max}-M_{\min})(\beta_{\AAI,t}-1)/4,\;M_{\min},\;M_{\max}}, & \text{otherwise}.
   \end{cases}
   \label{eq:duty_rule}
 \end{equation}
- where $\rho_\beta = 3.0$ is a sensitivity constant. Under steady field conditions ($g_{\theta,t} + g_{T,t} \to 0$), $\beta_{\AAI,t} \to 1.0$, enforcing full sensing-cost sensitivity so duty cycle $M_{\mathrm{duty},t}$ relaxes toward $M_{\min}$; during rapid environmental transients, $\beta_{\AAI,t} \to 5.0$, relaxing the sensing penalty denominator in Eq.~\eqref{eq:unified_objective} so the controller can increase polling frequency to capture rapid moisture or thermal shifts. Similarly, seasonal water weighting $\omega_t$ follows an FAO-style sinusoidal evaporative demand curve:
+ where $\rho_\beta = 3.0$ is a sensitivity constant and $M_{\max}=0.40$ is the polling ceiling. Under steady field conditions ($g_{\theta,t}+g_{T,t}\to0$), $\beta_{\AAI,t}\to1.0$ and $M_{\mathrm{duty},t}\to M_{\min}=0.05$; during rapid transients, $\beta_{\AAI,t}\to5.0$ and $M_{\mathrm{duty},t}\to M_{\max}=0.40$, so polling increases exactly when moisture or thermal gradients are largest. With $M_{\mathrm{elec}}=M_{\mathrm{duty}}=M_{\mathrm{duty},t}$ and $M_{\mathrm{hw}}=0.25$, the normalised sensing penalty $c_M\sum_i\theta_i M_i/\beta_{\AAI,t}$ in Eq.~\eqref{eq:unified_objective} falls from $0.117\,c_M$ at steady state to $0.070\,c_M$ at maximum demand: the denominator relaxes faster than duty rises, so the controller is not penalised for the extra sensing that transients require. Similarly, seasonal water weighting $\omega_t$ follows a sinusoidal evaporative-demand curve:
 \begin{equation}
   \omega_t = 1.0 + A_\omega \sin\!\left(\frac{2\pi (t - t_0)}{52}\right), \quad t \in \{1,\dots,52\},
   \label{eq:omega_fao}
@@ -163,7 +163,7 @@ with amplitude $A_\omega = 0.45$ and phase offset $t_0 = 13$ so peak weighting a
 \begin{figure}[t]
   \centering
   \includegraphics[width=\linewidth]{figures/fig1\_closed\_loop\_architecture.png}
-  \caption{Closed-loop orchestration architecture. Field telemetry ($S,C,M,W,\mathrm{Sup}$) is normalised and mapped by the tier-dependent objective in Eq.~\eqref{eq:unified_objective}; the nature gate $\Inat^{(\tau)}_t$ and hard bounds produce actuation signals, with drought triage engaged during Weeks~24--29. Generated by \texttt{generate\_figures.py}; no empirical data are shown.}
+  \caption{Closed-loop orchestration architecture. Field telemetry ($S,C,M,W,\mathrm{Sup}$) is normalised and mapped by the tier-dependent objective in Eq.~\eqref{eq:unified_objective}; the nature gate $\Inatt^{(\tau)}$ and hard bounds produce actuation signals, with drought triage engaged during Weeks~24--29. Generated by \texttt{generate\_figures.py}; no empirical data are shown.}
   \label{fig:architecture}
 \end{figure}
 
@@ -192,27 +192,27 @@ Using $\psi_\tau(\cdot)$, we define the net soil index $S_{\mathrm{net},t}^{(\ta
 \end{align}
 Let $\kappa_t = \frac{1}{3}\left[\mathrm{Sup}_{\mathrm{tech}} + (1 - \mathrm{Sup}_{\mathrm{dist}}) + \mathrm{Sup}_{\mathrm{reg}}\right] \in [0,1]$ denote the normalized supplier/infrastructure cost factor. The unified multi-tier objective $\mathcal{J}_{\tau}$ is:
 \begin{align}
-  \mathcal{J}_{\tau} &= \frac{1}{T}\sum_{t=1}^{T}\Bigg\{ \Inat^{(\tau)}_t \Big[ w_S(\tau)\,\pos{S_{\mathrm{net},t}^{(\tau)}} + w_C(\tau)\,\pos{C_{\mathrm{net},t}^{(\tau)}} + m_{\mathrm{mult}}(\tau)\,\pos{S_{\mathrm{net},t}^{(\tau)}}\,\pos{C_{\mathrm{net},t}^{(\tau)}} \Big] \nonumber\\
+  \mathcal{J}_{\tau} &= \frac{1}{T}\sum_{t=1}^{T}\Bigg\{ \Inatt^{(\tau)} \Big[ w_S(\tau)\,\pos{S_{\mathrm{net},t}^{(\tau)}} + w_C(\tau)\,\pos{C_{\mathrm{net},t}^{(\tau)}} + m_{\mathrm{mult}}(\tau)\,\pos{S_{\mathrm{net},t}^{(\tau)}}\,\pos{C_{\mathrm{net},t}^{(\tau)}} \Big] \nonumber\\
   &\quad - c_M(\tau)\,\frac{\sum_{i=1}^{3}\theta_i M_{i,t}}{\beta_{\AAI,t}} - c_W(\tau)\, \frac{\omega_t\,\psi_\tau\!\left(\tilde{D}_t^+\right)\kappa_t}{\phi_{\AAI}} \Bigg\}.
   \label{eq:unified_objective}
 \end{align}
-Notice that $\Inat^{(\tau)}_t$ is evaluated at every week $t$ inside the time average: it gates only the ecological reward core, while the sensing and water penalties remain active in the same summand even during a breach, so excessive water or energy draw during a crisis is never masked. Furthermore, positive-part clipping $\pos{\cdot}$ guarantees that if either $S_{\mathrm{net},t}^{(\tau)} \le 0$ or $C_{\mathrm{net},t}^{(\tau)} \le 0$, the multiplicative term $\pos{S_{\mathrm{net},t}^{(2)}}\pos{C_{\mathrm{net},t}^{(2)}}$ evaluates to $0$ rather than yielding a false positive product from two negative factors.
+Notice that $\Inatt^{(\tau)}$ is evaluated at every week $t$ inside the time average: it gates only the ecological reward core, while the sensing and water penalties remain active in the same summand even during a breach, so excessive water or energy draw during a crisis is never masked. Furthermore, positive-part clipping $\pos{\cdot}$ guarantees that if either $S_{\mathrm{net},t}^{(\tau)} \le 0$ or $C_{\mathrm{net},t}^{(\tau)} \le 0$, the multiplicative term $\pos{S_{\mathrm{net},t}^{(2)}}\pos{C_{\mathrm{net},t}^{(2)}}$ evaluates to $0$ rather than yielding a false positive product from two negative factors.
 
 \subsection{Hard Ecological Constraints and Drought Triage Fallback}
 Every feasible policy must satisfy four operational rules:
 \begin{enumerate}
   \item \textbf{Tier-scoped chemical input cap:} Synthetic chemical intensity $C_{\mathrm{chem}}$ ($\mathrm{kg/ha}$) satisfies $C_{\mathrm{chem}} \le C_{\mathrm{chem}}^{\max}(\tau)$, where $C_{\mathrm{chem}}^{\max}(0) = 120\,\mathrm{kg/ha}$ (transitional), $C_{\mathrm{chem}}^{\max}(1) = 45\,\mathrm{kg/ha}$ (reduced), and $C_{\mathrm{chem}}^{\max}(2) = 0\,\mathrm{kg/ha}$ (strict organic/regenerative).
-  \item \textbf{Minimum sensor duty-cycle floor:} $M_{\mathrm{duty},t} \ge M_{\min} = 0.05$ at all weeks $t$ to preserve baseline observability.
-  \item \textbf{Normal-operation root-zone moisture floor:} $\theta_{\mathrm{root},k,t} \ge \theta_{\mathrm{crit},k}$ for each crop group $k \in \{1,\dots,K\}$ under normal supply. This is a control target rather than an inviolable physical bound: the drought fallback in rule~4 is a documented exception that intentionally drives one or more crops below $\theta_{\mathrm{crit},k}$, with the resulting violation registered by $\Inat^{(2)}_t=0$ rather than being masked.
-  \item \textbf{Nature gate $\Inat^{(\tau)}_t$ and deterministic drought fallback:} For $\tau \in \{0,1\}$, $\Inat^{(\tau)}_t = 1$ at all weeks. For $\tau = 2$ (\texttt{AI-Strict}), Eq.~\eqref{eq:inat_gate} applies:
+  \item \textbf{Bounded sensor duty cycle:} $M_{\min}=0.05 \le M_{\mathrm{duty},t} \le M_{\max}=0.40$ at all weeks $t$: the lower bound preserves baseline observability, the upper bound prevents duty-cycling from becoming a second uncontrolled resource.
+  \item \textbf{Normal-operation root-zone moisture floor:} $\theta_{\mathrm{root},k,t} \ge \theta_{\mathrm{crit},k}$ for each crop group $k \in \{1,\dots,K\}$ under normal supply. This is a control target rather than an inviolable physical bound: the drought fallback in rule~4 is a documented exception that intentionally drives one or more crops below $\theta_{\mathrm{crit},k}$, with the resulting violation registered by $\Inatt^{(2)}=0$ rather than being masked.
+  \item \textbf{Nature gate $\Inatt^{(\tau)}$ and deterministic drought fallback:} For $\tau \in \{0,1\}$, $\Inatt^{(\tau)} = 1$ at all weeks. For $\tau = 2$ (\texttt{AI-Strict}), Eq.~\eqref{eq:inat_gate} applies:
   \begin{equation}
-    \Inat^{(2)}_t = \begin{cases}
+    \Inatt^{(2)} = \begin{cases}
       0, & \text{if } S_{\mathrm{deg},t} > S_{\mathrm{deg}}^{\mathrm{emerg}} \;\lor\; \min_{k}\left(\theta_{\mathrm{root},k,t} - \theta_{\mathrm{crit},k}\right) < 0, \\
       1, & \text{otherwise},
     \end{cases}
     \label{eq:inat_gate}
   \end{equation}
-  where $S_{\mathrm{deg}}^{\mathrm{emerg}} = 0.65$. \textbf{Deterministic fallback update rule:} Whenever drought supply limits prevent satisfying $\theta_{\mathrm{root},k,t} \ge \theta_{\mathrm{crit},k}$ across all plots simultaneously, the controller enters \emph{deficit-rationed triage}: (a) available irrigation water $W_{\mathrm{avail},t}$ is allocated strictly in descending order of crop survival priority (legume cover/perennial rootstock first, followed by winter wheat, then grain maize) capped at survival maintenance $\theta_{\mathrm{surv},k} = 0.85\,\theta_{\mathrm{crit},k}$; (b) sensor duty cycles on non-critical plots clamp to $M_{\min} = 0.05$ to conserve battery energy; (c) $\Inat^{(2)}_t$ sets to $0$ (zeroing the ecological reward term while keeping depletion penalties active in Eq.~\eqref{eq:unified_objective}); and (d) normal closed-loop operation resumes automatically at week $t'$ once $\theta_{\mathrm{root},k,t'} \ge \theta_{\mathrm{crit},k}$ and $S_{\mathrm{deg},t'} \le S_{\mathrm{deg}}^{\mathrm{emerg}}$ hold for two consecutive weeks. Thus the triage rule deliberately violates the rule-3 target under scarcity; the gate is the mechanism that registers that controlled violation rather than concealing it.
+  where $S_{\mathrm{deg}}^{\mathrm{emerg}} = 0.65$. \textbf{Deterministic fallback update rule:} Whenever drought supply limits prevent satisfying $\theta_{\mathrm{root},k,t} \ge \theta_{\mathrm{crit},k}$ across all plots simultaneously, the controller enters \emph{deficit-rationed triage}: (a) available irrigation water $W_{\mathrm{avail},t}$ is allocated strictly in descending order of crop survival priority (legume cover/perennial rootstock first, followed by winter wheat, then grain maize) capped at survival maintenance $\theta_{\mathrm{surv},k} = 0.85\,\theta_{\mathrm{crit},k}$; (b) sensor duty cycles on non-critical plots clamp to $M_{\min} = 0.05$ to conserve battery energy; (c) $\Inatt^{(2)}$ sets to $0$ (zeroing the ecological reward term while keeping depletion penalties active in Eq.~\eqref{eq:unified_objective}); and (d) normal closed-loop operation resumes automatically at week $t'$ once $\theta_{\mathrm{root},k,t'} \ge \theta_{\mathrm{crit},k}$ and $S_{\mathrm{deg},t'} \le S_{\mathrm{deg}}^{\mathrm{emerg}}$ hold for two consecutive weeks. Thus the triage rule deliberately violates the rule-3 target under scarcity; the gate is the mechanism that registers that controlled violation rather than concealing it.
 \end{enumerate}
 
 \begin{table}[t]
@@ -220,6 +220,7 @@ Every feasible policy must satisfy four operational rules:
   \small
   \caption{Complete parameter specification, units, and tier calibration values for reproducible simulation.}
   \label{tab:full_params}
+  \resizebox{\linewidth}{!}{%
   \begin{tabular}{@{}llll@{}}
     \toprule
     \textbf{Symbol} & \textbf{Description} & \textbf{Units / Domain} & \textbf{Calibrated Value / Rule} \\
@@ -253,9 +254,13 @@ Every feasible policy must satisfy four operational rules:
     $\theta_{\mathrm{loss},k}$ & Crop-loss storage threshold & $\mathrm{m}^3$ & $0.50\,\theta_{\mathrm{crit},k}$ \\
     $S_{\mathrm{deg}}^{\mathrm{emerg}}$ & Emergency soil degradation threshold & $[0, 1]$ & $0.65$ \\
     $C_{\mathrm{chem}}^{\max}(\tau)$ & Tier chemical intensity ceiling & $\mathrm{kg/ha}$ & $\tau=0: 120$; $\tau=1: 45$; $\tau=2: 0$ \\
-    $M_{\min}$ & Minimum active sensor duty cycle & $[0, 1]$ & $0.05$ (5\% floor) \\
+    $M_{\min}, M_{\max}$ & Duty-cycle floor and ceiling & $[0, 1]$ & $0.05$, $0.40$ (Eq.~\eqref{eq:duty_rule}) \\
+    $W^{\mathrm{fixed}}_{\mathrm{ext},k,t}$ & Fixed-rate baseline irrigation & $\mathrm{m}^3/\text{week}$ & $55$ per plot ($165$ field-wide), every week \\
+    $a_{\mathrm{org}}, a^{\mathrm{dep}}_{\mathrm{org}}$ & Soil-carbon gain / depletion coefficients & dimensionless & $0.0018$, $0.0010$ \\
+    $a^{\mathrm{chem}}_{\mathrm{deg}}, a^{\mathrm{dep}}_{\mathrm{deg}}, a^{\mathrm{dec}}_{\mathrm{deg}}$ & Degradation gain / depletion / decay coefficients & dimensionless & $0.0015$, $0.0008$, $0.0012$ \\
+    $S_{\mathrm{SOC}}, f_{\mathrm{chem}}$ & SOC scaling and yield--chemistry response & $\mathrm{g/kg}$, dimensionless & $20$ per unit $S_{\mathrm{org}}$; $0.85+0.15\,C_{\mathrm{chem}}/120$ \\
     \bottomrule
-  \end{tabular}
+  \end{tabular}}
 \end{table}
 
 %----------------------------------------------------------------------
@@ -265,7 +270,7 @@ We verify three structural guarantees of Eq.~\eqref{eq:unified_objective} across
 
 \begin{enumerate}
   \item \textbf{Collapse Non-Positivity:} For any week $t$ where either soil or crop net health collapses ($S_{\mathrm{net},t}^{(\tau)} \le 0$ or $C_{\mathrm{net},t}^{(\tau)} \le 0$), $\pos{S_{\mathrm{net},t}^{(\tau)}} = 0$ or $\pos{C_{\mathrm{net},t}^{(\tau)}} = 0$. Consequently, under \texttt{AI-Strict} ($\tau=2$), the multiplicative term $\pos{S_{\mathrm{net},t}^{(2)}}\pos{C_{\mathrm{net},t}^{(2)}} = 0$, strictly eliminating the sign-inversion bug in which two negative net scores multiply to a positive reward.
-  \item \textbf{Monotone Strictness Dominance:} The ordering holds in two distinct senses. (i) \emph{Resource penalties} are strictly increasing across all three tiers because $c_W(2) > c_W(1) > c_W(0)$ and $c_M(2) > c_M(1) > c_M(0)$ (Table~\ref{tab:full_params}). (ii) \emph{Stress penalties} are strictly increasing only from \texttt{AI-Med} to \texttt{AI-Strict}: Eq.~\eqref{eq:psi_penalty} gives $\psi_2(x) > \psi_1(x) = \psi_0(x)$ for $x\in(0,1)$, whereas $\psi_0=\psi_1$, $w_S(0)=w_S(1)$, $w_C(0)=w_C(1)$ and $\Inat^{(0)}_t=\Inat^{(1)}_t=1$ make the soil-degradation and crop-stress penalties \emph{identical} in tiers 0 and 1. We therefore do not claim a stress-penalty ordering between \texttt{AI-Low} and \texttt{AI-Med}; their distinction lies solely in $c_M$ and $c_W$.
+  \item \textbf{Monotone Strictness Dominance:} The ordering holds in two distinct senses. (i) \emph{Resource penalties} are strictly increasing across all three tiers because $c_W(2) > c_W(1) > c_W(0)$ and $c_M(2) > c_M(1) > c_M(0)$ (Table~\ref{tab:full_params}). (ii) \emph{Stress penalties} are strictly increasing only from \texttt{AI-Med} to \texttt{AI-Strict}: Eq.~\eqref{eq:psi_penalty} gives $\psi_2(x) > \psi_1(x) = \psi_0(x)$ for $x\in(0,1)$, whereas $\psi_0=\psi_1$, $w_S(0)=w_S(1)$, $w_C(0)=w_C(1)$ and $\Inatt^{(0)}=\Inatt^{(1)}=1$ make the soil-degradation and crop-stress penalties \emph{identical} in tiers 0 and 1. We therefore do not claim a stress-penalty ordering between \texttt{AI-Low} and \texttt{AI-Med}; their distinction lies solely in $c_M$ and $c_W$.
   \item \textbf{Anti-Compensation Coupling at $\tau=2$:} Because $\frac{\partial}{\partial S_{\mathrm{net},t}^{(2)}}\left[\pos{S_{\mathrm{net},t}^{(2)}}\pos{C_{\mathrm{net},t}^{(2)}}\right] = \pos{C_{\mathrm{net},t}^{(2)}}$ on the positive orthant, high crop performance cannot substitute for degraded soil; marginal reward for crop improvement vanishes as $S_{\mathrm{net},t}^{(2)} \to 0^+$.
 \end{enumerate}
 
@@ -275,12 +280,13 @@ We verify three structural guarantees of Eq.~\eqref{eq:unified_objective} across
 To ensure transparent, non-circular cross-tier comparison without relying on incomparable dimensionless scores, we define a standardized 52-week evaluation protocol ($t = 1,\dots,52$: Spring Weeks~1--13, Summer Weeks~14--26, Autumn Weeks~27--39, Winter Weeks~40--52) across $K=3$ crop groups (winter wheat, grain maize, and legume cover crop). Although the orchestration controller itself is deterministic, stochastic pedoclimatic variability is evaluated across $N = 20$ fixed pseudo-random seeds ($\mathrm{seed} \in \{100, 101, \dots, 119\}$), which govern initial soil organic matter and moisture perturbations ($\pm 8\%$), weekly effective rainfall realizations $W_{\mathrm{rain},t}$, and topsoil thermal noise.
 
 \subsection{Experimental Configurations and Identical Stress Forcing}
-All four operational policies are subjected to identical pedoclimatic forcing and the \emph{exact same} six-week late-summer drought disturbance during Weeks~24--29 (adding $+0.35$ to $C_{\mathrm{ext},k}$, $+0.38$ to $S_{\mathrm{deg}}$, and reducing $W_{\mathrm{rain},t}$ by $70\%$):
+All five operational policies are subjected to identical pedoclimatic forcing and the \emph{exact same} six-week late-summer drought disturbance during Weeks~24--29 (adding $+0.35$ to $C_{\mathrm{ext},k}$, $+0.38$ to $S_{\mathrm{deg}}$, and reducing $W_{\mathrm{rain},t}$ by $70\%$):
 \begin{itemize}
-  \item \textbf{\texttt{Conventional}:} Fixed open-loop irrigation schedule, continuous sensor polling ($M_{\mathrm{duty},t} = 1.0$), and baseline synthetic inputs ($C_{\mathrm{chem}} = 120\,\mathrm{kg/ha}$).
-  \item \textbf{\texttt{AI-Low} ($\tau=0$):} State-dependent orchestration with additive objective, relaxed resource weights, and $C_{\mathrm{chem}} \le 120\,\mathrm{kg/ha}$.
-  \item \textbf{\texttt{AI-Med} ($\tau=1$):} State-dependent orchestration with balanced additive weights and $C_{\mathrm{chem}} \le 45\,\mathrm{kg/ha}$.
-  \item \textbf{\texttt{AI-Strict} ($\tau=2$):} Non-compensatory multiplicative core, concave penalty $\psi_2(\cdot)$, zero synthetic chemicals ($C_{\mathrm{chem}} = 0$), active nature gate $\Inat^{(2)}$, and drought triage fallback.
+  \item \textbf{\texttt{Conv-Fixed}:} Fixed open-loop irrigation of $55\,\mathrm{m}^3$ per plot per week, continuous polling ($M_{\mathrm{duty},t}=1.0$), and baseline synthetic inputs ($C_{\mathrm{chem}}=120\,\mathrm{kg/ha}$). It represents status-quo fixed-rate management.
+  \item \textbf{\texttt{Conv-ET}:} Best-practice conventional comparator: the same priority-ordered, state-based irrigation to $\theta_{\mathrm{crit},k}$ and the same supply caps as the \texttt{AI} tiers, but continuous polling ($M_{\mathrm{duty},t}=1.0$) and $C_{\mathrm{chem}}=120\,\mathrm{kg/ha}$. It differs from \texttt{AI-Low} only in duty cycling, isolating the sensing contribution.
+  \item \textbf{\texttt{AI-Low} ($\tau=0$):} Identical irrigation to \texttt{Conv-ET}, additive objective with relaxed resource weights, adaptive duty cycling, and $C_{\mathrm{chem}}=120\,\mathrm{kg/ha}$---tier~0 changes sensing and allocation only, not chemical intensity.
+  \item \textbf{\texttt{AI-Med} ($\tau=1$):} As \texttt{AI-Low} with balanced additive weights and $C_{\mathrm{chem}} \le 45\,\mathrm{kg/ha}$.
+  \item \textbf{\texttt{AI-Strict} ($\tau=2$):} Non-compensatory multiplicative core, concave penalty $\psi_2(\cdot)$, zero synthetic chemicals ($C_{\mathrm{chem}}=0$), active nature gate $\Inat^{(2)}$, and drought triage fallback.
 \end{itemize}
 
 \subsection{Primary Physical Metrics vs. Within-Tier Diagnostics}
@@ -291,6 +297,7 @@ Because $\mathcal{J}_0, \mathcal{J}_1,$ and $\mathcal{J}_2$ incorporate tier-spe
   \small
   \caption{Standardized 52-week benchmark reporting schema (all cross-system comparisons are evaluated on physical units across $N \ge 20$ seeds; $\mathcal{J}_\tau$ serves only as a within-tier diagnostic).}
   \label{tab:protocol_metrics}
+  \resizebox{\linewidth}{!}{%
   \begin{tabular}{@{}llll@{}}
     \toprule
     \textbf{Metric Category} & \textbf{Physical Quantity} & \textbf{Unit} & \textbf{Evaluation Role} \\
@@ -302,35 +309,37 @@ Because $\mathcal{J}_0, \mathcal{J}_1,$ and $\mathcal{J}_2$ incorporate tier-spe
     Crisis Resilience & Crop-weeks with $\theta_{\mathrm{root},k,t} < 0.5\,\theta_{\mathrm{crit},k}$ (Weeks~24--29) & crop-weeks & Primary drought-safety metric \\
     Tier Objective & Within-tier objective $\mathcal{J}_\tau$ (Eq.~\ref{eq:unified_objective}) & Dimensionless & Within-tier diagnostic only \\
     \bottomrule
-  \end{tabular}
+  \end{tabular}}
 \end{table}
 
 %----------------------------------------------------------------------
 \section{Results}
 %----------------------------------------------------------------------
-Table~\ref{tab:results} reports the five primary physical outcomes for all four policies over the 20 fixed seeds. All quantities are produced by \texttt{simulate\_benchmark.py} from the equations and parameters specified above; no hand-tuned outputs are used.
+Table~\ref{tab:results} reports the five physical outcomes for all five policies over the 20 fixed seeds. Every number is produced by \texttt{simulate\_benchmark.py} from the equations and parameters specified above; no hand-tuned outputs are used. The table is generated directly into \texttt{results/results\_table.tex} by the same script, so manuscript and data cannot drift apart.
 
-\begin{table}[t]
-  \centering
-  \small
-  \caption{Empirical benchmark results: mean $\pm$ SD over $N=20$ seeds (100--119). The five primary physical metrics drive cross-policy ranking; $\mathcal{J}$ is a within-tier diagnostic only.}
-  \label{tab:results}
-  \resizebox{\linewidth}{!}{%
-  \begin{tabular}{@{}lcccc@{}}
-    \toprule
-    Metric & Conventional & AI\text{-}Low & AI\text{-}Med & AI\text{-}Strict \\
-    \midrule
-    Yield (t/ha) & $5.76 \pm 0.07$ & $6.41 \pm 0.04$ & $5.81 \pm 0.03$ & $5.49 \pm 0.03$ \\
-    Irrigation (m$^3$/ha) & $8580.0 \pm 0.0$ & $5383.5 \pm 381.3$ & $5383.5 \pm 381.3$ & $5437.5 \pm 387.9$ \\
-    IoT energy (kWh/ha) & $131.0 \pm 0.0$ & $32.3 \pm 0.9$ & $32.3 \pm 0.9$ & $29.5 \pm 0.7$ \\
-    $\Delta$SOC (g/kg) & $-0.18 \pm 0.49$ & $-0.18 \pm 0.49$ & $0.99 \pm 0.49$ & $1.69 \pm 0.49$ \\
-    Crop-loss crop-weeks & $8.90 \pm 2.51$ & $4.90 \pm 0.31$ & $4.90 \pm 0.31$ & $4.40 \pm 0.50$ \\
-    $J$ (diagnostic) & $0.57 \pm 0.02$ & $0.63 \pm 0.02$ & $0.64 \pm 0.02$ & $0.12 \pm 0.02$ \\
-    \bottomrule
-  \end{tabular}}
-\end{table}
+\input{results/results_table.tex}
 
-Three results are robust across seeds. First, state-dependent allocation removes the conventional policy's structural waste: irrigation falls from $8580$ to $\approx 5400$\,m$^3$/ha ($-37\%$) and IoT energy from $131.0$ to $29.5$--$32.3$\,kWh/ha ($-75$ to $-77\%$), while \texttt{AI-Low} still raises yield by $11\%$ relative to conventional. Second, the strictness ladder behaves as a genuine trade-off rather than a free lunch: soil carbon rises monotonically from $-0.18$ (Conventional and \texttt{AI-Low}) to $+0.99$ (\texttt{AI-Med}) and $+1.69$\,g/kg (\texttt{AI-Strict}), while yield falls from $6.41$ to $5.49$\,t/ha. Third, \texttt{AI-Strict} records the fewest crop-loss events ($4.40$ versus $8.90$ crop-weeks), confirming that priority-ordered rationing contains catastrophic deficits even though it deliberately breaches the normal-operation floor (Fig.~\ref{fig:drought}). The low objective value of \texttt{AI-Strict} ($0.12$) is expected: its gate is zero during triage, so $J$ is a within-tier diagnostic and not a cross-policy ranking score. Splitting the seeds into two disjoint halves (100--109 and 110--119) preserves every ranking above, so the conclusions are not driven by a subset of the random draws.
+Four conclusions follow from the paired, shared-seed comparison.
+
+\begin{enumerate}
+  \item \textbf{Water and yield gains come from ET scheduling, not from the AI tier.} \texttt{Conv-ET} already reduces irrigation from $8580$ to $5383$\,m$^3$/ha ($-37\%$) and raises yield from $5.76$ to $6.41$\,t/ha ($+11\%$) relative to \texttt{Conv-Fixed}, using the same priority allocation and supply caps as the \texttt{AI} tiers. \texttt{AI-Low} is identical to \texttt{Conv-ET} on both metrics; the earlier draft's attribution of these gains to adaptive orchestration was therefore incorrect.
+  \item \textbf{Adaptive duty cycling is the genuine sensing contribution.} Because polling now rises with $\beta_{\AAI,t}$ (Eq.~\eqref{eq:duty_rule}), \texttt{AI-Low}--\texttt{AI-Med} use $17.5$\,kWh/ha against $131.0$\,kWh/ha for both conventional baselines ($-87\%$), with no further change in water or yield. \texttt{AI-Strict} uses $16.7$\,kWh/ha because triage forces $M_{\min}$.
+  \item \textbf{The strictness ladder is a real trade-off, not a free lunch.} $\Delta$SOC rises monotonically from $-0.18$ (\texttt{Conv-Fixed}, \texttt{Conv-ET}, \texttt{AI-Low}) to $+0.99$ (\texttt{AI-Med}) and $+1.69$\,g/kg (\texttt{AI-Strict}), while yield falls to $5.49$\,t/ha at $\tau=2$.
+  \item \textbf{Triage reduces the worst deficits but does not eliminate them.} \texttt{AI-Strict} records $4.40$ crop-weeks below $0.5\,\theta_{\mathrm{crit}}$ versus $8.90$ for \texttt{Conv-Fixed} and $4.90$ for the state-based policies (Fig.~\ref{fig:drought}). The gain over \texttt{Conv-ET} is small ($0.50$ crop-weeks) but consistent across seeds.
+\end{enumerate}
+
+Table~\ref{tab:paired} reports paired differences against \texttt{Conv-Fixed} on the same 20 random draws, with 95\% $t$ confidence intervals. All five physical differences for \texttt{AI-Strict}, and the yield and irrigation differences for \texttt{AI-Low}/\texttt{AI-Med}, are significant at $p<0.05$; the equal soil-carbon outcomes of the conventional and \texttt{AI-Low} policies are correctly non-significant ($p=0.73$).
+
+\input{results/stats_table.tex}
+
+The tier objective $\mathcal{J}$ is reported separately in Table~\ref{tab:diagnostics}. Its cross-policy values are \emph{not} a ranking: $c_M$ and $c_W$ are $3.2$--$3.3\times$ larger at $\tau=2$, $w_S$ and $w_C$ are halved, and the nature gate is zero during triage. All three changes suppress $\mathcal{J}$ by construction, so only within-tier comparisons are meaningful.
+
+\input{results/diagnostics_table.tex}
+
+\subsection{Sensitivity of the response coefficients}
+The SI-unit magnitudes depend on the illustrative coefficients of Section~3.2. Table~\ref{tab:sensitivity} therefore perturbs each of the ten response coefficients by $\pm25\%$ one at a time and reports the resulting outcomes. The four encoded robustness checks are C1: \texttt{AI-Low} yield exceeds \texttt{Conv-Fixed}; C2: $\Delta$SOC increases monotonically from \texttt{AI-Low} to \texttt{AI-Strict}; C3: \texttt{AI-Strict} has fewer crop-loss crop-weeks than \texttt{Conv-Fixed}; and C4: \texttt{AI-Strict} uses less IoT energy than \texttt{Conv-Fixed}. All 20 perturbations preserve C1--C4. The coefficient magnitudes should therefore be read as illustrative; the \emph{orderings}, not the absolute g/kg or t/ha values, are the transferable claim. This is a one-at-a-time check, not a global sensitivity analysis.
+
+\input{results/sensitivity_table.tex}
 
 \begin{figure}[t]
   \centering
@@ -342,33 +351,40 @@ Three results are robust across seeds. First, state-dependent allocation removes
 \begin{figure}[t]
   \centering
   \includegraphics[width=\linewidth]{figures/Figure_4_Drought_Stress_Test.png}
-  \caption{Drought trajectories for a representative seed (100+5). Root-zone storage is shown for the three crop groups with their critical floors (dotted); the shaded band is Weeks~24--29. Conventional irrigation cannot prevent severe depletion, while \texttt{AI-Strict} holds the two highest-priority plots near their survival caps. Generated by \texttt{simulate\_benchmark.py}.}
+  \caption{Drought trajectories for a representative seed (105). Root-zone storage is shown for the three crop groups with their critical floors (dotted); the shaded band is Weeks~24--29. \texttt{Conv-Fixed} cannot prevent severe depletion, while \texttt{AI-Strict} holds the two highest-priority plots near their survival caps. Generated by \texttt{simulate\_benchmark.py}.}
   \label{fig:drought}
 \end{figure}
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=0.78\linewidth]{figures/Figure_5_Radar_Comparison.png}
-  \caption{Normalised five-pillar comparison (each axis scaled to $[0,5]$). Water and energy saving are relative to conventional; crisis safety is $5$ minus crop-loss crop-weeks divided by three. The radar summarises Table~\ref{tab:results} and is generated by \texttt{simulate\_benchmark.py}.}
+  \caption{Normalised five-pillar comparison (each axis scaled to $[0,5]$). Water and energy saving are relative to \texttt{Conv-Fixed}; crisis safety is $5$ minus crop-loss crop-weeks divided by three. The radar summarises Table~\ref{tab:results} and is generated by \texttt{simulate\_benchmark.py}.}
   \label{fig:radar}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{figures/Figure_6_Sensitivity.png}
+  \caption{One-at-a-time sensitivity of three headline outcomes to $\pm25\%$ perturbations of the ten response coefficients (coefficient order as in Table~\ref{tab:sensitivity}). The qualitative conclusions C1--C4 do not change. Generated by \texttt{simulate\_benchmark.py}.}
+  \label{fig:sensitivity}
 \end{figure}
 
 %----------------------------------------------------------------------
 \section{Discussion and Limitations}
 %----------------------------------------------------------------------
 \subsection{Operational Tier Selection}
-The three strictness tiers correspond to distinct agronomic transition stages: \texttt{AI-Low} ($\tau=0$) supports farms transitioning off intensive synthetic inputs without abrupt yield shocks; \texttt{AI-Med} ($\tau=1$) balances commercial productivity with moderate water and energy conservation; and \texttt{AI-Strict} ($\tau=2$) is designed for water-stressed or ecologically sensitive zones where soil-capital preservation and drought triage supersede short-term output maximization. The benchmark in Section~6 confirms this interpretation: \texttt{AI-Low} attains the highest yield, \texttt{AI-Med} adds most of the soil-carbon benefit at a small yield cost, and \texttt{AI-Strict} maximises soil carbon and drought containment at the largest yield cost.
+The three strictness tiers correspond to distinct agronomic transition stages. \texttt{AI-Low} ($\tau=0$) is a sensing-and-allocation tier: it changes duty cycling but leaves chemical intensity at the conventional $120$\,kg/ha, and its yield and irrigation are identical to \texttt{Conv-ET}. \texttt{AI-Med} ($\tau=1$) balances commercial productivity with a moderate chemical cap ($45$\,kg/ha) and captures about $60\%$ of the soil-carbon gain at a small yield cost. \texttt{AI-Strict} ($\tau=2$) is designed for water-stressed or ecologically sensitive zones where soil-capital preservation and drought triage supersede short-term output maximisation: it attains the highest $\Delta$SOC and fewest crop-loss events at the largest yield cost. Section~6 confirms this interpretation, and the paired statistics show that these differences are not seed-noise artefacts.
 
 \subsection{Limitations and Future Empirical Validation}
-Three limitations bound the scope of this work. First, the evaluation is a deterministic simulation benchmark rather than a multi-season field trial: the yield, soil-carbon and stress responses in Section~3.2 are parsimonious response functions, not calibrated crop models, and parameter transfer to other pedoclimates requires lysimeter and sensor-testbed validation. Second, edge execution of state estimation and triage logic introduces local microcontroller compute overhead that is not included in the reported radio-duty savings; hardware-in-the-loop profiling remains necessary. Third, the drought disturbance is a six-week level shift applied identically to all policies, so it tests triage mechanics but not sequence-dependent drought onset, recovery hysteresis or multi-year carry-over of soil carbon. Extending the protocol along those axes is the natural next step.
+Four limitations bound the scope of this work. First, the evaluation is a simulation benchmark rather than a multi-season field trial: the yield, soil-carbon and stress responses in Section~3.2 are parsimonious response functions, not calibrated crop models, and parameter transfer to other pedoclimates requires lysimeter and sensor-testbed validation. Second, although all ten coefficients survive $\pm25\%$ one-at-a-time perturbations (Section~6.1), this is not a global sensitivity analysis and does not establish parameter identifiability; the absolute g/kg and t/ha magnitudes remain illustrative. Third, edge execution of state estimation and triage logic introduces local microcontroller compute overhead that is not included in the reported radio-duty savings; hardware-in-the-loop profiling remains necessary. Fourth, the drought disturbance is a six-week level shift applied identically to all policies, so it tests triage mechanics but not sequence-dependent drought onset, recovery hysteresis or multi-year carry-over of soil carbon. Extending the protocol along those axes is the natural next step.
 
 %----------------------------------------------------------------------
 \section{Conclusion}
 %----------------------------------------------------------------------
-We presented a mathematically consistent, multi-tier agri-ecological optimization framework ($\tau \in \{0,1,2\}$) that resolves sign-inversion bugs in multiplicative sustainability cores via positive-part clipping, corrects unit-interval quadratic under-penalization via the monotone concave map $\psi_\tau(x)$, disambiguates hydrological storage ($\theta_{\mathrm{root},k,t}$) from depletion flux ($D_t^+$), and formalizes the nature gate $\Inat^{(\tau)}_t$ alongside a deterministic drought triage fallback rule. A fully specified 52-week, 20-seed benchmark was executed: state-dependent orchestration cut irrigation by $37\%$ and IoT energy by over $75\%$, while the strictness ladder traded yield for soil carbon and drought safety, with \texttt{AI-Strict} delivering the highest $\Delta$SOC and the fewest crop-loss events. By anchoring cross-policy comparison on physical agro-ecological metrics rather than incomparable dimensionless scores, the framework provides both a rigorous specification and reproducible baseline evidence for sustainable precision agriculture.
+We presented a mathematically consistent, multi-tier agri-ecological optimization framework ($\tau \in \{0,1,2\}$) that resolves sign-inversion bugs in multiplicative sustainability cores via positive-part clipping, corrects unit-interval quadratic under-penalization via the monotone concave map $\psi_\tau(x)$, disambiguates hydrological storage ($\theta_{\mathrm{root},k,t}$) from depletion flux ($D_t^+$), and formalizes the nature gate $\Inatt^{(\tau)}$ alongside a deterministic drought triage fallback rule. A fully specified 52-week, 20-seed benchmark was executed against two conventional baselines: ET-scheduled irrigation cut water use by $37\%$ and raised yield by $11\%$ relative to fixed-rate scheduling, while adaptive duty cycling cut IoT energy by $87\%$ with no further water or yield cost. The strictness ladder then traded yield for soil carbon and drought safety, with \texttt{AI-Strict} delivering the highest $\Delta$SOC ($+1.69$\,g/kg) and the fewest crop-loss events ($4.40$ crop-weeks); paired tests and 20 coefficient perturbations support the orderings. By anchoring cross-policy comparison on physical agro-ecological metrics rather than incomparable dimensionless scores, the framework provides both a rigorous specification and reproducible baseline evidence for sustainable precision agriculture.
 
 \section*{Statements and Declarations}
-\noindent\textbf{Code and Data Availability:} All code and data required to reproduce the results and every figure are publicly available at \url{https://github.com/OsamaGharibElwaly/multi-tier-agri-ecological-optimization-framework} under the MIT licence. The repository contains \texttt{scripts/simulate\_benchmark.py} (benchmark, Table~\ref{tab:results} and Figs.~\ref{fig:synergy}--\ref{fig:radar}), \texttt{scripts/generate\_figures.py} (Figs.~\ref{fig:architecture}--\ref{fig:tiers}), \texttt{results/results.json} (all 80 per-seed records), \texttt{results/results\_table.tex} and \texttt{README.md}. The scripts require only NumPy and Matplotlib; from the repository root run \texttt{python scripts/simulate\_benchmark.py} and \texttt{python scripts/generate\_figures.py}. A version-archive DOI will be assigned at acceptance.\\
+\noindent\textbf{Code and Data Availability:} All code and data required to reproduce the results and every figure are publicly available at \url{https://github.com/OsamaGharibElwaly/multi-tier-agri-ecological-optimization-framework} under the MIT licence. The repository contains \texttt{scripts/simulate\_benchmark.py} (five-policy benchmark, Tables~\ref{tab:results}, \ref{tab:paired}, \ref{tab:diagnostics}, \ref{tab:sensitivity} and Figs.~\ref{fig:synergy}--\ref{fig:sensitivity}), \texttt{scripts/generate\_figures.py} (Figs.~\ref{fig:architecture}--\ref{fig:tiers}), \texttt{results/results.json} (all 100 per-seed records: 5 policies $\times$ 20 seeds), the four generated \texttt{results/*\_table.tex} files, and \texttt{README.md}. The scripts require NumPy, SciPy and Matplotlib; from the repository root run \texttt{python scripts/simulate\_benchmark.py} and \texttt{python scripts/generate\_figures.py}. A version-archive DOI will be assigned at acceptance.\\
 \noindent\textbf{Funding:} The author declares that no specific external funding was received for this work.\\
 \noindent\textbf{Competing Interests:} The author declares no competing interests.
 

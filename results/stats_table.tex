@@ -1,0 +1,18 @@
+\begin{table}[t]
+  \centering
+  \small
+\caption{Paired differences (each \texttt{AI} tier minus \texttt{Conv-Fixed}) over the same 20 seeds. Entries are mean difference with 95\% paired $t$ confidence interval; $p<0.05$ marked $^{*}$.}
+  \label{tab:paired}
+  \resizebox{\linewidth}{!}{%
+  \begin{tabular}{@{}lcccc@{}}
+    \toprule
+    Metric & Conv\text{-}ET & AI\text{-}Low & AI\text{-}Med & AI\text{-}Strict \\
+    \midrule
+    Yield (t/ha) & +0.65 [+0.62,+0.68]$^{*}$ & +0.65 [+0.62,+0.68]$^{*}$ & +0.05 [+0.02,+0.08]$^{*}$ & -0.28 [-0.31,-0.24]$^{*}$ \\
+    Irrigation (m$^3$/ha) & -3196.52 [-3374.96,-3018.08]$^{*}$ & -3196.52 [-3374.96,-3018.08]$^{*}$ & -3196.52 [-3374.96,-3018.08]$^{*}$ & -3142.54 [-3324.08,-2961.01]$^{*}$ \\
+    IoT energy (kWh/ha) & +0.00 [+0.00,+0.00] & -113.50 [-113.78,-113.22]$^{*}$ & -113.50 [-113.78,-113.22]$^{*}$ & -114.32 [-114.54,-114.10]$^{*}$ \\
+    $\Delta$SOC (g/kg) & +0.00 [-0.00,+0.00] & +0.00 [-0.00,+0.00] & +1.17 [+1.17,+1.17]$^{*}$ & +1.87 [+1.87,+1.87]$^{*}$ \\
+    Crop-loss crop-weeks & -4.00 [-5.15,-2.85]$^{*}$ & -4.00 [-5.15,-2.85]$^{*}$ & -4.00 [-5.15,-2.85]$^{*}$ & -4.50 [-5.61,-3.39]$^{*}$ \\
+    \bottomrule
+  \end{tabular}}
+\end{table}
